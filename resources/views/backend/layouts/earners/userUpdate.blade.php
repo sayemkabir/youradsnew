@@ -27,6 +27,12 @@
                         <input required value="{{$user_edit->email}}" type="email" name="email" namespace="Enter E-mail" class="form-control">
 
                     </div>
+
+                    <div class="form-group" >
+                        <label for="">Update Deposit:</label>
+                        <input required value="{{$user_edit->deposit_balance}}" type="number" name="updateDeposit" namespace="Enter E-mail" class="form-control">
+
+                    </div>
                     <div class="col-sm-10">
                         <div class="form-group">
                             <label for="">UPLOAD PHOTO:</label><br>

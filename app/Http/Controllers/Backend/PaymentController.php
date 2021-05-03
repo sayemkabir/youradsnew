@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Ad;
 use App\Models\DepositBalance;
 use App\Models\User;
+use App\Models\WithdrawBalance;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -17,6 +19,12 @@ class PaymentController extends Controller
 
     }
 
+    public function balanceWithdraw()
+    {
+        $payment=WithdrawBalance::all();
+        return view('userDashboard.layouts.withdraw.withdrawForm',compact('payment'));
+    }
+
     public function balanceDepositSuccess(Request $request)
     {
         $deposit=DepositBalance::create([
@@ -26,28 +34,48 @@ class PaymentController extends Controller
             'payment_method'=>$request->depositMethod,
 
         ]);
-        return redirect()->route('deposit.balance.message')->with('success','Deposit Request Was Placed Successfully');
-    }
+
+        return view('userDashboard.layouts.deposit.depositMessage',compact('deposit'));
+        }
 
 //BACKEND
     public function depositRequests()
     {
         $title='Deposit Requests';
-        $deposit=DepositBalance::with('userPaymentDepositRequest')->get();
+        $deposit=DepositBalance::with('userPaymentDepositRequest')->paginate('5');
         return view('backend.layouts.Payment.depositRequests',compact('deposit','title'));
 
     }
 
 
-    public function depositBalanceUpdate()
+    public function depositBalanceUpdate($id)
     {
-     //
+
+        $paymentupdate=DepositBalance::find($id);
+
+        $paymentupdate->update([
+
+            'status'=>'processed'
+
+        ]);
+
+        User::where('id',$paymentupdate->user_id)->increment('deposit_balance',$paymentupdate->deposit_balance);
+
+        return redirect()->back();
     }
 
 
-    public function depositBalanceMessage()
+    public function balanceUpdateAds($id)
     {
-        $deposit=DepositBalance::orderBy('deposit_balance','desc')->first();
-        return view('userDashboard.layouts.deposit.depositMessage',compact('deposit'));
+
+        $paymentupdate=Ad::find($id);
+
+
+
+        User::where('id',$paymentupdate->user_id)->decrement('deposit_balance',$paymentupdate->total_price);
+
+
+
     }
+
 }

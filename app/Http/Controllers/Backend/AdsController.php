@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\UserAd;
 use Illuminate\Http\Request;
 use App\Models\Ad;
@@ -102,7 +103,7 @@ class AdsController extends Controller
 //dd($ads->count());
         if ($ads->count() < $ad->ad_clicks) {
 
-            $ads = UserAd::where('ad_id', $id)->where('user_id', auth('admin')->user()->id)
+            $ads = UserAd::where('ad_id', $id)->where('user_id', auth('user')->user()->id)
                 ->first();
 
             if ($ads) {
@@ -113,8 +114,9 @@ class AdsController extends Controller
                 //create data
                 UserAd::create([
                     'ad_id' => $id,
-                    'user_id' => auth('admin')->user()->id
+                    'user_id' => auth('user')->user()->id
                 ]);
+                User::find(auth('user')->user()->id)->increment('balance',$ad->ad_price);
 
 
                 //user balance credit
@@ -169,7 +171,7 @@ class AdsController extends Controller
 
     public function advertisesAdsPost(Request $request)
     {
-        Ad::create([
+        $adsPayment=Ad::create([
 
             'ad_name' => $request->adname,
             'user_id' => auth('user')->user()->id,
@@ -183,6 +185,9 @@ class AdsController extends Controller
             'total_price'=>$request->adtotalprice
 
         ]);
+
+        User::where('id',$adsPayment->user_id)->decrement('deposit_balance',$adsPayment->total_price);
+
 
         return redirect()->back()->with('success', 'Ad Created Successfully.');
 

@@ -15,6 +15,41 @@
 <!-- Morrisjs -->
 <script src="{{asset('userDashboard')}}/plugins/raphael/raphael.min.js"></script>
 <script src="{{asset('userDashboard')}}/plugins/morris/morris.min.js"></script>
+<script type="text/javascript">
+    // jQuery(function($) {
+    //     $('#startClock').on('click', doCount);
+    // });
+
+    var start =document.querySelectorAll('.startClock');
+    start.forEach(function (element){
+        element.addEventListener('click',function (e){
+            // e.preventDefault();
+            var duration = Number.parseInt(e.target.dataset.duration);
+            var key= e.target.dataset.key
+
+            doCount(duration,key)
+        })
+    })
+
+    function doCount(duration,key) {
+        var counter = duration;
+
+        setInterval(function() {
+            counter--;
+            if (counter >= 0) {
+                span = document.getElementById("count-"+key);
+                span.innerHTML = counter;
+            }
+            if (counter === -1) {
+                alert('You Have Earned 3 satoshi');
+                //api call
+                clearInterval(counter);
+            }
+        }, 1000);
+    }
+
+</script>
+
 <!-- Pignose Calender -->
 <script src="{{asset('userDashboard')}}/plugins/moment/moment.min.js"></script>
 <script src="{{asset('userDashboard')}}/plugins/pg-calendar/js/pignose.calendar.min.js"></script>

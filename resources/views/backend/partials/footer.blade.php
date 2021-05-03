@@ -45,7 +45,7 @@
                 span.innerHTML = counter;
             }
             if (counter === -1) {
-                alert('You Have Earned 3 satoshi');
+                alert('You Account Was Credited');
                 //api call
                 clearInterval(counter);
             }

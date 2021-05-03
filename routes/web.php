@@ -59,11 +59,15 @@ Route::post('/advertise/ads/create',[AdsController::class,'advertisesAdsPost'])-
 Route::get('/post/ads',[AdsController::class,'postAdsDashboard'])->name('post.ads.dashboard');
 
 
-//Withdraw
+//Deposit
 Route::get('/balance/deposit',[PaymentController::class,'balanceDepositForm'])->name('balance.deposit.form');
 Route::post('/balance/deposit/success',[PaymentController::class,'balanceDepositSuccess'])->name('balance.deposit.success');
     Route::get('/deposit/balance/message',[PaymentController::class,'depositBalanceMessage'])->name('deposit.balance.message');
 
+
+    //Withdraw
+    Route::get('/balance/withdraw',[PaymentController::class,'balanceWithdraw'])->name('balance.withdraw.form');
+//    Route::post('/balance/withdraw/success',[PaymentController::class,])
 
 //dashboard Login
 
@@ -85,8 +89,10 @@ Route::group(['prefix'=>'back'],function (){
 
     Route::get('/login/form',[AdminController::class,'adminLogin'])->name('login.view');
     Route::post('login/admin',[AdminController::class,'adminValidate'])->name('admin.login');
+    Route::get('ads/post/{id}',[AdsController::class,'adsPost'])->name('ads.post');
 
-Route::group(['middleware'=>'auth'],function (){
+
+    Route::group(['middleware'=>'auth'],function (){
 
 //dashboard
 Route::get('/',[DashboardController::class,'viewDashboard'])->name('dashboard');
@@ -121,13 +127,14 @@ Route::get('/ads',[AdsController::class,'viewAds'])->name('ads.view');
 Route::get('/ads/create',[AdsController::class,'createAds'])->name('ads.form');
 Route::post('/ads/create/form',[AdsController::class,'adsCreateForm'])->name('ads.create');
 Route::get('ads/delete/{id}',[AdsController::class,'adsDelete'])->name('ads.delete');
-Route::get('ads/post/{id}',[AdsController::class,'adsPost'])->name('ads.post');
 Route::get('/ads/sort/{id}',[AdsController::class,'adsSort'])->name('ads.sort');
 
 
 //Payment
     Route::get('/deposit/requests',[PaymentController::class,'depositRequests'])->name('deposit.requests');
-Route::post('/deposit/balance/update',[PaymentController::class,'depositBalanceUpdate'])->name('deposit.balance.update');
+Route::get('/deposit/balance/update/{id}',[PaymentController::class,'depositBalanceUpdate'])->name('deposit.balance.update');
+
+Route::get('/balance/update/ads/{id}',[PaymentController::class,'balanceUpdateAds'])->name('balance.update.ads');
 
 
 //Admin Login

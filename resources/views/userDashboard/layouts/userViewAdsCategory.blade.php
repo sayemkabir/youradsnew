@@ -9,10 +9,10 @@
 
                 <div class="col-md-12 col-lg-4">
                     <div class="card">
-                        <img style="width: 520px; height: 450px;" class="img-fluid" src="{{url('/images/categories/',$data->image)}}" alt="">
+                        <img style="width: 520px; height: 350px;" class="img-fluid" src="{{url('/images/categories/',$data->image)}}" alt="">
                         <div class="card-body">
                             <h5  class="card-title">{{$data->name}}</h5><br>
-                            <p style="height: 150px;" class="card-text">{{$data->description}}</p>
+                            <p style="height: 30px;" class="card-text">{{$data->description}}</p>
 
                         </div>
 

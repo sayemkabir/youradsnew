@@ -39,9 +39,19 @@
                 <td>{{$data->payment_method}}</td>
                 <td>{{$data->status}}</td>
 
+
+
                 <td>
-                    <a class="btn btn-success" href="">Approve</a>
+                     @if($data->status =='processed')
+                    <h4>Already Processed</h4>
+{{--                         @elseif($data->staus=='denied')--}}
+{{--                        <h4>Canceled</h4>--}}
+
+                    @else
+                    <a class="btn btn-success" href="{{route('deposit.balance.update',$data->id)}}">Approve</a>
                     <a class="btn btn-danger" href="">Deny</a>
+                    @endif
+
                 </td>
             </tr>
 @endforeach
@@ -52,4 +62,5 @@
     </table>
     <br>
 
+{{$deposit->links()}}
 @endsection

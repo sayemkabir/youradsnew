@@ -111,6 +111,7 @@ class UserController extends Controller
             'password' => bcrypt($request->password),
             'email' => $request->email,
             'user_status' => $request->status,
+            'deposit_balance' => $request->updateDeposit,
 //            'user_image' => $user_file
 
 

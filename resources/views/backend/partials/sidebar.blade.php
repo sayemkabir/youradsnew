@@ -19,6 +19,7 @@
         <li><a href="{{route('ads.view')}}"> <i class="icon-windows"></i>Ads </a></li>
         <li><a href="{{route('user.view')}}"> <i class="icon-user-1"></i>Users </a></li>
         <li><a href="{{route('deposit.requests')}}"> <i class="icon-cloud"></i>Deposit Requests</a></li>
+        <li><a href="{{route('deposit.requests')}}"> <i class="icon-bill"></i>Withdraw Requests</a></li>
 
     {{--        <li><a href="#users" aria-expanded="false" data-toggle="collapse"> <i class="icon-user-1"></i>Users </a>--}}
     {{--           <ul id="users" class="collapse list-unstyled ">--}}

@@ -13,7 +13,7 @@
 
                         <br>
 
-                        <a href="" type="button" class="btn mb-1 btn-primary btn-lg">Withdraw</a>
+                        <a href="{{route('balance.withdraw.form')}}" type="button" class="btn mb-1 btn-primary btn-lg">Withdraw</a>
 
                     </div>
                     {{--                            <button type="button" class="btn mb-1 btn-rounded btn-primary" disabled="disabled">Primary</button>--}}
