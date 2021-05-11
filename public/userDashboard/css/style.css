@@ -553,7 +553,7 @@ pre {
   position: relative;
   width: 100%;
   min-height: 1px;
-  padding-right: 15px;
+  padding-right: 17px;
   padding-left: 15px; }
 
 .col {
@@ -5630,7 +5630,7 @@ button.bg-dark:focus {
 
 .pr-5,
 .px-5 {
-  padding-right: 3rem !important; }
+  padding-right: 19px !important; }
 
 .pb-5,
 .py-5 {
@@ -5638,7 +5638,7 @@ button.bg-dark:focus {
 
 .pl-5,
 .px-5 {
-  padding-left: 3rem !important; }
+  padding-left: 10px !important; }
 
 .m-auto {
   margin: auto !important; }
@@ -8208,9 +8208,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
       color: #7571f9; }
     .nk-sidebar .metismenu a {
       transition: all 0.4s ease-in-out; }
-      .nk-sidebar .metismenu a:hover, .nk-sidebar .metismenu a:active, .nk-sidebar .metismenu a.active {
-        text-decoration: none;
-        background-color: #F3F1FA; }
+      .nk-sidebar .metismenu a:hover, .nk-sidebar .metismenu a:active, .nk-sidebar .metismenu a.active {}
     .nk-sidebar .metismenu .has-arrow:after {
       position: absolute;
       content: "";

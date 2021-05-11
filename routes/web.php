@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\HomepageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ApiController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\AdsController;
 use App\Http\Controllers\Backend\AdminController;
@@ -53,10 +54,11 @@ Route::get('/view/ads',[AdsController::class,"viewAdsCategoryDashboard"])->name(
 //Category-wise Ads
 Route::get('/view/ads/surf/{id}',[AdsController::class,'surfAdsView'])->name('surf.ads.view');
 
-
+//User Create Ads
 Route::get('/advertise/ads',[AdsController::class,'advertisesAds'])->name('advertise.ads');
 Route::post('/advertise/ads/create',[AdsController::class,'advertisesAdsPost'])->name('advertise.ads.post');
 Route::get('/post/ads',[AdsController::class,'postAdsDashboard'])->name('post.ads.dashboard');
+Route::get('/post-fetch/{id}',[ApiController::class,'postAdsFetch'])->name('post.ad.fetch');
 
 
 //Deposit
@@ -67,11 +69,19 @@ Route::post('/balance/deposit/success',[PaymentController::class,'balanceDeposit
 
     //Withdraw
     Route::get('/balance/withdraw',[PaymentController::class,'balanceWithdraw'])->name('balance.withdraw.form');
-//    Route::post('/balance/withdraw/success',[PaymentController::class,])
+    Route::post('/balance/withdraw/success',[PaymentController::class,'balanceWithdrawSuccess'])->name('balance.withdraw.success');
+    Route::get('/balance/withdraw/message',[PaymentController::class,'balanceWithdrawMessage'])->name('balance.withdraw.message');
+
 
 //dashboard Login
 
 Route::get('/user/logout',[UserController::class,'userLogout'])->name('user.logout');
+
+//User Profile
+
+    Route::get('/user/profile',[UserController::class,'userProfile'])->name('user.profile');
+    Route::put('/user/details/update',[UserController::class,'userUpdateFrontend'])->name('user.update.frontend');
+    Route::put('/user/details/wallet/update',[UserController::class,'userWalletUpdateFrontend'])->name('user.wallet.update.frontend');
 
 });
 
@@ -131,10 +141,17 @@ Route::get('/ads/sort/{id}',[AdsController::class,'adsSort'])->name('ads.sort');
 
 
 //Payment
-    Route::get('/deposit/requests',[PaymentController::class,'depositRequests'])->name('deposit.requests');
+Route::get('/deposit/requests',[PaymentController::class,'depositRequests'])->name('deposit.requests');
 Route::get('/deposit/balance/update/{id}',[PaymentController::class,'depositBalanceUpdate'])->name('deposit.balance.update');
+Route::get('/deposit/balance/update/deny/{id}',[PaymentController::class,'depositBalanceUpdateDeny'])->name('deposit.balance.update.deny');
+Route::get('/deposit/balance/update/deny/balance/{id}',[PaymentController::class,'depositBalanceUpdateDenyBalance'])->name('deposit.balance.update.deny.balance');
+//Route::get('/balance/update/ads/{id}',[PaymentController::class,'balanceUpdateAds'])->name('balance.update.ads');
 
-Route::get('/balance/update/ads/{id}',[PaymentController::class,'balanceUpdateAds'])->name('balance.update.ads');
+Route::get('/withdraw/requests',[PaymentController::class,'withdrawRequests'])->name('withdraw.requests');
+Route::get('/withdraw/balance/update/{id}',[PaymentController::class,'withdrawBalanceUpdate'])->name('withdraw.balance.update');
+Route::get('/withdraw/balance/update/deny/{id}',[PaymentController::class,'withdrawBalanceUpdateDeny'])->name('withdraw.balance.update.deny');
+Route::get('/withdraw/balance/update/deny/balance/{id}',[PaymentController::class,'withdrawBalanceUpdateDenyBalance'])->name('withdraw.balance.update.deny.balance');
+
 
 
 //Admin Login

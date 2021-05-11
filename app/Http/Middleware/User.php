@@ -27,7 +27,7 @@ class User
             }
 
         }else{
-            return redirect()->route('user.dashboard');
+            return redirect()->route('login.form');
         }
     }
 }

@@ -1,6 +1,6 @@
-<div class="nk-sidebar">
+<div class="nk-sidebar" style="background: black">
     <div class="nk-nav-scroll">
-        <ul class="metismenu" id="menu">
+        <ul class="metismenu" id="menu" >
 
             <li>
                 <a  href="{{route('user.dashboard')}}" >
@@ -14,6 +14,11 @@
 
                 <a  href="{{route('advertise.ads')}}" >
                     <i class="icon-chart menu-icon"></i>&nbsp; <span class="nav-text">Advertise</span>
+                </a>
+
+
+                <a  href="{{route('user.profile')}}" >
+                    <i class="icon-user menu-icon"></i>&nbsp; <span class="nav-text">Profile</span>
                 </a>
 
 

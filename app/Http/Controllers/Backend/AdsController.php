@@ -109,7 +109,7 @@ class AdsController extends Controller
             if ($ads) {
                 // do if data exist
 
-                dd('data exist');
+                dd('You Have Already Watched This Ad');
             } else {
                 //create data
                 UserAd::create([
@@ -145,8 +145,8 @@ class AdsController extends Controller
 
     public function surfAdsView($id)
     {
-        $surfads=Ad::find($id);
-        $surfads=Ad::where('category_id',$id)->get();
+//        $surfads=Ad::find($id);
+        $surfads=Ad::where('category_id',$id)->where('ad_status','active')->get();
         return view('userDashboard.layouts.adsCategorywise.surfAds',compact('surfads'));
 
     }
@@ -161,6 +161,48 @@ class AdsController extends Controller
     }
 
 
+
+
+
+    public function advertisesAdsPost(Request $request)
+    {
+
+        $check=User::find(auth('user')->user()->id);
+        $remaining=$check->deposit_balance;
+        $withdrawAmount=$request->adtotalprice;
+
+        if ($remaining>=$withdrawAmount){
+
+            $adsPayment=Ad::create([
+
+                'ad_name' => $request->adname,
+                'user_id' => auth('user')->user()->id,
+//            'admin_id' => auth()->user()->id,
+                'ad_link' => $request->adlink,
+                'ad_content' => $request->adcontent,
+                'ad_clicks' => $request->adclicks,
+                'ad_duration' => $request->adduration,
+                'category_id' => $request->categoryid,
+                'ad_price' => $request->adprice,
+                'total_price'=>$request->adtotalprice
+
+            ]);
+
+            Mail::to(auth()->user()->email)->send(new BookingNotification($adsPayment));
+
+
+            User::where('id',$adsPayment->user_id)->decrement('deposit_balance',$adsPayment->total_price);
+
+
+            return redirect()->route('user.profile')->with('successad', 'Ad Created Successfully.');
+
+        }
+
+        return redirect()->back()->with('success','Total Cost Exceeds Your Deposit Balance');
+
+        }
+
+
     public function advertisesAds()
     {
 
@@ -169,27 +211,8 @@ class AdsController extends Controller
     }
 
 
-    public function advertisesAdsPost(Request $request)
-    {
-        $adsPayment=Ad::create([
-
-            'ad_name' => $request->adname,
-            'user_id' => auth('user')->user()->id,
-//            'admin_id' => auth()->user()->id,
-            'ad_link' => $request->adlink,
-            'ad_content' => $request->adcontent,
-            'ad_clicks' => $request->adclicks,
-            'ad_duration' => $request->adduration,
-            'category_id' => $request->categoryid,
-            'ad_price' => $request->adprice,
-            'total_price'=>$request->adtotalprice
-
-        ]);
-
-        User::where('id',$adsPayment->user_id)->decrement('deposit_balance',$adsPayment->total_price);
 
 
-        return redirect()->back()->with('success', 'Ad Created Successfully.');
 
-    }
+
 }

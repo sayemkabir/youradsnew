@@ -63,6 +63,9 @@
                                     <th>Activity</th>
                                 </tr>
                                 </thead>
+
+{{--                                @foreach()--}}
+
                                 <tbody>
                                 <tr>
                                     <td><img src="./images/avatar/1.jpg" class=" rounded-circle mr-3" alt="">Sarah Smith</td>
@@ -107,11 +110,11 @@
                                     <td>
                                         <div>
                                             <div class="progress" style="height: 6px">
-                                                <div class="progress-bar bg-warning" style="width: 50%"></div>
+                                                <div class="progress-bar bg-danger" style="width: 50%"></div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td><i class="fa fa-circle-o text-warning  mr-2"></i> Pending</td>
+                                    <td><i class="fa fa-circle-o text-danger  mr-2"></i> Pending</td>
                                     <td>
                                         <span>Last Login</span>
                                         <span class="m-0 pl-3">10 sec ago</span>
@@ -169,6 +172,9 @@
                                     </td>
                                 </tr>
                                 </tbody>
+
+{{--                                @endforeach--}}
+
                             </table>
                         </div>
                     </div>

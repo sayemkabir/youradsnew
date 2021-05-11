@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Ad;
+use App\Models\UserAd;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,13 +20,6 @@ class UserController extends Controller
         $title = "USERS LIST";
         return view('backend.layouts.earners.earners', compact('user_create', 'title'));
     }
-
-
-
-
-
-
-
 
 
     public function createUser(Request $request)
@@ -54,18 +49,8 @@ class UserController extends Controller
 
 
         ]);
-        return redirect()->route('user.view')->with('success','User created Successfully');
+        return redirect()->route('user.view')->with('success', 'User created Successfully');
     }
-
-
-
-
-
-
-
-
-
-
 
 
     public function viewCreate()
@@ -74,13 +59,6 @@ class UserController extends Controller
         return view('backend.layouts.earners.earnerCreate', compact('title'));
 
     }
-
-
-
-
-
-
-
 
 
     public function userDelete($id)
@@ -96,16 +74,16 @@ class UserController extends Controller
 
     public function userUpdateForm($id)
     {
-        $title="User Update Form";
-        $user_edit=User::find($id);
-        return view('backend.layouts.earners.userUpdate',compact('title','user_edit'));
+        $title = "User Update Form";
+        $user_edit = User::find($id);
+        return view('backend.layouts.earners.userUpdate', compact('title', 'user_edit'));
     }
 
 
-    public function userUpdate(Request $request,$id)
+    public function userUpdate(Request $request, $id)
     {
 
-        $user_update=User::find($id)->update([
+        $user_update = User::find($id)->update([
 
             'user_name' => $request->userName,
             'password' => bcrypt($request->password),
@@ -116,18 +94,10 @@ class UserController extends Controller
 
 
         ]);
-        return redirect()->route('user.view')->with('success','User Updated Successfully');
+        return redirect()->route('user.view')->with('success', 'User Updated Successfully');
 
 
     }
-
-
-
-
-
-
-
-
 
 
 //Frontend
@@ -157,7 +127,7 @@ class UserController extends Controller
 
 
         ]);
-        return redirect()->route('registration.form')->with('success','Account Created successfully !');
+        return redirect()->route('registration.form')->with('success', 'Account Created successfully !');
     }
 
 
@@ -167,25 +137,11 @@ class UserController extends Controller
     }
 
 
-
-
-
-
-
-
     public function loginForm()
     {
 
         return view('frontend.layouts.login.loginWeb');
     }
-
-
-
-
-
-
-
-
 
 
     public function registrationForm()
@@ -195,17 +151,13 @@ class UserController extends Controller
     }
 
 
-
-
-
-
     public function userValidate(Request $request)
     {
 
         $request->validate([
 
-            'email'=>'required|email',
-            'password'=>'required|min:6'
+            'email' => 'required|email',
+            'password' => 'required|min:6'
 
         ]);
 
@@ -226,13 +178,53 @@ class UserController extends Controller
     {
         Auth::guard('user')->logout();
 
-        return redirect()->route('login.form')->with('success','Logged Out Successfully');
+        return redirect()->route('login.form')->with('success', 'Logged Out Successfully');
     }
 
 
+//Profile
+    public function userProfile()
+    {
+        $user_update=User::find(auth('user')->user()->id);
+        $adclicks=UserAd::where('user_id',auth('user')->user()->id)->get();
+        $surfads = Ad::where('user_id', auth('user')->user()->id)->orderby('created_at','desc')->get();
+        return view('userDashboard.layouts.profile.userProfile', compact('surfads','adclicks','user_update'));
+    }
 
-    //user payment
+    public function userUpdateFrontend(Request $request)
+    {
 
+        $user_update = User::find(auth('user')->user()->id)->update([
+
+            'user_name' => $request->userName,
+            'password' => bcrypt($request->password),
+            'email' => $request->email,
+            'wallet_address' => $request->walletaddress,
+//            'user_status' => $request->status,
+//            'deposit_balance' => $request->updateDeposit,
+//            'user_image' => $user_file
+
+
+        ]);
+        return redirect()->back()->with('success', 'User Details Updated Successfully');
+
+
+    }
+public function userWalletUpdateFrontend(Request $request)
+    {
+
+        $user_update = User::find(auth('user')->user()->id)->update([
+
+
+            'wallet_address' => $request->walletaddress,
+//
+
+
+        ]);
+        return redirect()->back()->with('successwallet', 'Wallet Updated Successfully');
+
+
+    }
 
 
 }

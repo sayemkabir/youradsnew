@@ -41,7 +41,7 @@
                 span.innerHTML = counter;
             }
             if (counter === -1) {
-                alert('You Have Earned 3 satoshi');
+                alert('Your Account Was Credited');
                 //api call
                 clearInterval(counter);
             }
@@ -69,7 +69,7 @@
 
 <script src="{{asset('userDashboard')}}/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
 
-
+@stack('customer_js')
 
 <script src="{{asset('userDashboard')}}/js/dashboard/dashboard-1.js"></script>
 

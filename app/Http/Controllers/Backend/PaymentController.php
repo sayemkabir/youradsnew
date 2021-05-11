@@ -38,12 +38,90 @@ class PaymentController extends Controller
         return view('userDashboard.layouts.deposit.depositMessage',compact('deposit'));
         }
 
+        public function balanceWithdrawSuccess(Request $request)
+    {
+        $check=User::find(auth('user')->user()->id);
+        $remaining=$check->balance;
+        $withdrawAmount=$request->bitcoinAmount;
+//        dd($withdrawAmount);
+        if($remaining>=$withdrawAmount){
+
+
+            $deposit=WithdrawBalance::create([
+
+                'user_id'=>auth('user')->user()->id,
+                'withdraw_balance'=>$request->bitcoinAmount,
+                'payment_method'=>$request->depositMethod,
+
+            ]);
+
+    return redirect()->route('balance.withdraw.message')->with('success','Withdraw Request Was Placed Successfully');
+
+
+        }
+return redirect()->back()->with('success','Requested Amount Exceeds Your Main Balance. Please Try Again.');
+        }
+
 //BACKEND
     public function depositRequests()
     {
         $title='Deposit Requests';
-        $deposit=DepositBalance::with('userPaymentDepositRequest')->paginate('5');
+        $deposit=DepositBalance::with('userDeposit')->paginate(5);
+//        dd($deposit);
         return view('backend.layouts.Payment.depositRequests',compact('deposit','title'));
+
+    }
+
+    public function withdrawRequests()
+    {
+        $title='Withdraw Requests';
+        $deposit=WithdrawBalance::with('userPaymentWithdrawRequest')->paginate('5');
+        return view('backend.layouts.Payment.withdrawRequest',compact('deposit','title'));
+    }
+
+
+    public function withdrawBalanceUpdate($id)
+    {
+
+        $paymentupdate=WithdrawBalance::find($id);
+
+        $paymentupdate->update([
+
+            'status'=>'processed'
+
+        ]);
+
+        User::where('id',$paymentupdate->user_id)->decrement('balance',$paymentupdate->withdraw_balance);
+
+        return redirect()->back();
+    }
+
+    public function withdrawBalanceUpdateDeny($id)
+    {
+
+        $paymentupdate=WithdrawBalance::find($id);
+
+        $paymentupdate->update([
+
+            'status'=>'denied'
+
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function withdrawBalanceUpdateDenyBalance($id)
+    {
+        $paymentupdate=WithdrawBalance::find($id);
+        $paymentupdate->update([
+
+            'status'=>'denied'
+
+        ]);
+
+        User::where('id',$paymentupdate->user_id)->increment('balance',$paymentupdate->withdraw_balance);
+
+        return redirect()->back();
 
     }
 
@@ -64,18 +142,55 @@ class PaymentController extends Controller
         return redirect()->back();
     }
 
-
-    public function balanceUpdateAds($id)
+    public function depositBalanceUpdateDeny($id)
     {
 
-        $paymentupdate=Ad::find($id);
+        $paymentupdate=DepositBalance::find($id);
+
+        $paymentupdate->update([
+
+            'status'=>'denied'
+
+        ]);
 
 
-
-        User::where('id',$paymentupdate->user_id)->decrement('deposit_balance',$paymentupdate->total_price);
-
-
-
+        return redirect()->back();
     }
+
+    public function depositBalanceUpdateDenyBalance($id)
+    {
+
+        $paymentupdate=DepositBalance::find($id);
+
+        $paymentupdate->update([
+
+            'status'=>'denied'
+
+        ]);
+        User::where('id',$paymentupdate->user_id)
+            ->decrement('deposit_balance',$paymentupdate->deposit_balance);
+
+        return redirect()->back();
+    }
+
+
+    public function balanceWithdrawMessage()
+    {
+        return view('userDashboard.layouts.withdraw.withdrawMessage');
+    }
+
+
+//    public function balanceUpdateAds($id)
+//    {
+//
+//        $paymentupdate=Ad::find($id);
+//
+//
+//
+//        User::where('id',$paymentupdate->user_id)->decrement('deposit_balance',$paymentupdate->total_price);
+//
+//
+//
+//    }
 
 }

@@ -9,7 +9,7 @@
     <title>YourAds</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('userDashboard')}}/images/logo40.png">
-    <!-- Pignose Calender -->
+    <link href="{{asset('userDashboard/fontawesome/css/all.css')}}" rel="stylesheet">    <!-- Pignose Calender -->
     <link href="{{asset('userDashboard')}}/plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
     <!-- Chartist -->
     <link rel="stylesheet" href="{{asset('userDashboard')}}/plugins/chartist/css/chartist.min.css">

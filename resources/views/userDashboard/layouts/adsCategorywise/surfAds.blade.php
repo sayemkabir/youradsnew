@@ -3,14 +3,15 @@
 
 
     <div class="container-fluid">
-        <div class="row">
 
+{{--        @if($surfads!=null)--}}
+        <div class="row">
             @foreach($surfads as $key=>$data)
             <div class="col-12">
                 <div class="card">
 
                     <div class="card-body">
-                        <h2>{{$data->ad_name}}</h2>
+                        <p><h4>{{$key+1}}</h4><i class="fas fa-ad"></i></p><h2>{{$data->ad_name}}</h2>
                         <h3 style="color: royalblue"> <span id="count-{{$key}}">{{$data->ad_duration}}</span> </h3>
 
                         @php
@@ -30,6 +31,9 @@
             @endforeach
 
         </div>
+{{--        @else--}}
+{{--            <h2>hello</h2>--}}
+{{--        @endif--}}
     </div>
 
 

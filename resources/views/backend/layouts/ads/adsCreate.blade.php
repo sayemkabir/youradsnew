@@ -51,6 +51,8 @@
                       <label for="" >Ad DURATION:</label>
                       <select class="form-control" name="adduration" >
 
+                          <option value="5 sec">5 seconds</option>
+                          <option value="10 sec">10 seconds</option>
                           <option value="30 sec">30 seconds</option>
                           <option value="60 sec">60 seconds</option>
                           <option value="120 sec">120 seconds</option>

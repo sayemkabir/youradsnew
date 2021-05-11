@@ -23,7 +23,7 @@
     <!--**********************************
         Nav header start
     ***********************************-->
-    <div class="nav-header">
+    <div class="nav-header" style="background: black">
         <div class="brand-logo">
             <a href="{{route('home.page')}}">
                 <span><img src="{{asset('userDashboard')}}/images/logo40.png" alt=""> </span>
@@ -41,8 +41,8 @@
     <!--**********************************
         Header start
     ***********************************-->
-    <div class="header">
-        <div class="header-content clearfix">
+    <div class="header" style="background: black">
+        <div class="header-content clearfix" >
 
             <div class="nav-control">
                 <div class="hamburger">
@@ -66,7 +66,7 @@
                             <div class="dropdown-content-body">
                                 <ul>
                                     <li>
-                                        <a href="app-profile.html"><i class="icon-user"></i> <span>Profile</span></a>
+                                        <a href="{{route('user.profile')}}"><i class="icon-user"></i> <span>Profile</span></a>
                                     </li>
 
                                     <li><a href="{{route('user.logout')}}"><i class="icon-key"></i> <span>Logout</span></a></li>
