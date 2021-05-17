@@ -27,6 +27,14 @@ class PaymentController extends Controller
 
     public function balanceDepositSuccess(Request $request)
     {
+
+        $request->validate([
+
+            'bitcoinAmount'=>'required',
+            'depositMethod'=>'required',
+
+        ]);
+
         $deposit=DepositBalance::create([
 
             'user_id'=>auth('user')->user()->id,
@@ -40,6 +48,14 @@ class PaymentController extends Controller
 
         public function balanceWithdrawSuccess(Request $request)
     {
+
+        $request->validate([
+
+            'bitcoinAmount'=>'required',
+            'withdrawMethod'=>'required',
+
+        ]);
+
         $check=User::find(auth('user')->user()->id);
         $remaining=$check->balance;
         $withdrawAmount=$request->bitcoinAmount;
@@ -51,7 +67,7 @@ class PaymentController extends Controller
 
                 'user_id'=>auth('user')->user()->id,
                 'withdraw_balance'=>$request->bitcoinAmount,
-                'payment_method'=>$request->depositMethod,
+                'payment_method'=>$request->withdrawMethod,
 
             ]);
 

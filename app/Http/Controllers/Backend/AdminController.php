@@ -28,7 +28,15 @@ class AdminController extends Controller
 //dd($request->all());
 
         $request->validate([
-
+            
+            'adminname'=>'required',
+            'admin_image'=>'required',
+            'adminpassword'=>'required|min:6',
+            'adminrole'=>'required',
+            'adminemail'=>'required|email',
+            'admincontact'=>'required',
+            'adminstatus'=>'required',
+            
 
         ]);
 
@@ -121,10 +129,35 @@ class AdminController extends Controller
 
     public function adminUpdatePost(Request $request,$id)
     {
+        
+        $request->validate([
+
+            'adminname'=>'required',
+            'admin_image'=>'required',
+            'adminpassword'=>'required|min:6',
+            'adminrole'=>'required',
+            'adminemail'=>'required|email',
+            'admincontact'=>'required',
+            'adminstatus'=>'required',
+            
+        ]);
+
+        $image_name = "";
+
+        if ($request->hasFile('admin_image')) {
+            $file = $request->file('admin_image');
+            if ($file->isValid()) {
+
+                $image_name = date('Ymdhms') . "." . $file->getClientOriginalExtension();
+                $file->storeAs('admin', $image_name);
+            }
+
+        }
+        
         $admin=Admin::find($id)->update([
 
             'name' => $request->adminname,
-//            'image' => $image_name,
+            'image' => $image_name,
             'password' => bcrypt($request->adminpassword),
             'role' => $request->adminrole,
             'email' => $request->adminemail,

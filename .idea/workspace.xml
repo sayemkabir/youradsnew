@@ -5,32 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ee3e7ef-f75f-4759-b870-869da64b31fe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/layouts/Payment/withdrawRequest.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/layouts/if else" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/userDashboard/layouts/profile/userProfile.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/userDashboard/layouts/withdraw/withdrawMessage.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/mail/adPaymentMail.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/mail/userRegistration.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/userDashboard/layouts/profile/adClickExtend.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/AdminController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/AdsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/AdsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/CategoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/PaymentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/PaymentController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/DepositBalance.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/DepositBalance.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/WithdrawBalance.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/WithdrawBalance.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_01_002820_create_deposit_balances_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_02_051759_create_withdraw_balances_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/userDashboard/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/userDashboard/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/layouts/Payment/depositRequests.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/Payment/depositRequests.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/layouts/admins/adminCreate.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/admins/adminCreate.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/layouts/admins/adminUpdateForm.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/admins/adminUpdateForm.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/layouts/ads/adsCreate.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/ads/adsCreate.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/partials/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/partials/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/layouts/category/category.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/category/category.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/layouts/category/categoryUpdate.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/category/categoryUpdate.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/layouts/earners/earnerCreate.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/earners/earnerCreate.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/layouts/earners/userUpdate.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/earners/userUpdate.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/layouts/login/registrationWeb.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/login/registrationWeb.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/userDashboard/layouts/adsCategorywise/surfAds.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/userDashboard/layouts/adsCategorywise/surfAds.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/userDashboard/layouts/deposit/depositForm.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/userDashboard/layouts/deposit/depositForm.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/userDashboard/layouts/profile/userProfile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/userDashboard/layouts/profile/userProfile.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/userDashboard/layouts/userAdsCreate.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/userDashboard/layouts/userAdsCreate.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/userDashboard/layouts/userDashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/userDashboard/layouts/userDashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/userDashboard/layouts/userViewAdsCategory.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/userDashboard/layouts/userViewAdsCategory.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/userDashboard/layouts/withdraw/withdrawForm.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/userDashboard/layouts/withdraw/withdrawForm.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/userDashboard/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/userDashboard/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/userDashboard/partials/userFooter.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/userDashboard/partials/userFooter.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/userDashboard/partials/userHeader.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/userDashboard/partials/userHeader.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/userDashboard/partials/userSidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/userDashboard/partials/userSidebar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -253,7 +250,10 @@
       <workItem from="1620580884842" duration="2033000" />
       <workItem from="1620590839276" duration="563000" />
       <workItem from="1620626698876" duration="7081000" />
-      <workItem from="1620712421666" duration="2103000" />
+      <workItem from="1620712421666" duration="23167000" />
+      <workItem from="1620895981641" duration="3228000" />
+      <workItem from="1620946631582" duration="13724000" />
+      <workItem from="1621230559224" duration="9593000" />
     </task>
     <servers />
   </component>
@@ -282,7 +282,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/userDashboard/layouts/withdraw/withdrawForm.blade.php</url>
-          <line>8</line>
+          <line>127</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">

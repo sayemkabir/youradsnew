@@ -5,6 +5,13 @@
     <form action="{{route('ads.create')}}" method="post">
 
 
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger">{{$error}}</div>
+            @endforeach
+        @endif
+
+
 
             @csrf
 
@@ -14,14 +21,14 @@
         <div class="form-group">
 
             <label for="">ENTER Ad NAME:</label>
-            <input type="text" name="adname" placeholder="Enter Ad Name" class="form-control">
+            <input required type="text" name="adname" placeholder="Enter Ad Name" class="form-control">
 
         </div>
 
                   <div class="form-group">
 
                       <label for="">Ad LINK:</label>
-                      <input type="text" class="form-control" name="adlink" placeholder="Enter Website/Content/Video Address That You Want To Post As An Advertisement">
+                      <input required type="text" class="form-control" name="adlink" placeholder="Enter Website/Content/Video Address That You Want To Post As An Advertisement">
 
 
 
@@ -30,14 +37,15 @@
         <div class="form-group">
 
             <label for="" >ENTER Ad CONTENT:</label>
-            <textarea class="form-control" name="adcontent"  cols="20" rows="10" placeholder="Enter Ad Description"></textarea>
+            <textarea required class="form-control" name="adcontent"  cols="20" rows="10" placeholder="Enter Ad Description"></textarea>
 
         </div>
 
                   <div class="form-group">
 
                       <label for="">SELECT CATEGORY:</label>
-                      <select name="categoryid" class="form-control">
+                      <select required name="categoryid" class="form-control">
+                          <option selected disabled value="">Select Category</option>
                           @foreach($categoriesid as $data)
                               <option value="{{$data->id}}">{{$data->name}}</option>
                           @endforeach
@@ -49,8 +57,9 @@
                   <div class="form-group">
 
                       <label for="" >Ad DURATION:</label>
-                      <select class="form-control" name="adduration" >
+                      <select required class="form-control" name="adduration" >
 
+                          <option disabled selected value="5 sec">Select Duration</option>
                           <option value="5 sec">5 seconds</option>
                           <option value="10 sec">10 seconds</option>
                           <option value="30 sec">30 seconds</option>
@@ -66,7 +75,7 @@
             <label for="" >Ad CLICKS:</label>
 
 
-            <input type="number" name="adclicks" placeholder="Enter the number of clicks for the ad" class="form-control">
+            <input required min="1" type="number" name="adclicks" placeholder="Enter the number of clicks for the ad" class="form-control">
 
 {{--            <select class="form-control" name="adclicks" >--}}
 
@@ -86,7 +95,7 @@
 
                       <label for="" >Ad PRICE:</label>
 
-                      <input type="number" name="adprice" placeholder="price will be automatically calculated" class="form-control">
+                      <input required min="1" type="number" name="adprice" placeholder="price will be automatically calculated" class="form-control">
 
 
 
@@ -96,7 +105,7 @@
 
                       <label for="" >TOTAL PRICE:</label>
 
-                      <input type="number" name="adtotalprice" placeholder="price will be automatically calculated" class="form-control">
+                      <input required min="1" type="number" name="adtotalprice" placeholder="price will be automatically calculated" class="form-control">
 
 
 

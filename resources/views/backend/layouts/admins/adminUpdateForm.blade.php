@@ -4,6 +4,12 @@
 
     <form action="{{route("admin.update.post",$admin->id)}}" method="post" enctype="multipart/form-data">
 
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger">{{$error}}</div>
+            @endforeach
+        @endif
+
             @csrf
             @method('PUT')
 
@@ -40,7 +46,7 @@
                     <div class="form-group">
                         <label for="">ENTER ROLE:</label>
                         <div class="col-sm-4">
-                            <select name="adminrole"  class="form-control">
+                            <select required name="adminrole"  class="form-control">
 
 
 {{--                                <option value="">Select Admin Type</option>--}}
@@ -57,7 +63,7 @@
                     <div class="col-sm-10">
                         <div class="form-group">
                             <label for="">UPLOAD PHOTO:</label><br>
-                            <input type="file" name="admin_image" placeholder="Please Select An Image">
+                            <input required type="file" name="admin_image" placeholder="Please Select An Image">
 
 
                         </div>
@@ -65,7 +71,7 @@
                     <div class="col-sm-4">
                         <div class="form-group" >
                             <label for="">STATUS:</label>
-                            <select type="option" name="adminstatus"  class="form-control">
+                            <select required type="option" name="adminstatus"  class="form-control">
 {{--                                <option value="">Select Admin Status</option>--}}
                                 <option @if($admin->status) selected @endif value="Active">Active</option>
                                 <option @if($admin->status) selected @endif value="Inactive">Inactive</option>

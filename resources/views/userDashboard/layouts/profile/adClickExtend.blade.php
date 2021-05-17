@@ -33,38 +33,32 @@
     <div class="wrapper wrapper--w790">
         <div class="card card-5">
             <div class="card-heading">
-               <center>
-                   @if(session()->has('success'))
+                <center>
+                    @if(session()->has('success'))
 
-                       <div class="alert alert-danger">
-                           {{ session()->get('success') }}
-                       </div>
-                   @endif
-
-
-                       @if ($errors->any())
-                           @foreach ($errors->all() as $error)
-                               <div class="alert alert-danger">{{$error}}</div>
-                           @endforeach
-                       @endif
+                        <div class="alert alert-danger">
+                            {{ session()->get('success') }}
+                        </div>
+                    @endif
 
 
 
-                   <h2 style="color: goldenrod">Create An Ad Campaign</h2>
+                    <h2 style="color: goldenrod">Update Ad Campaign</h2>
 
-               </center>
+                </center>
             </div>
             <div class="card-body">
-                <form action="{{route('advertise.ads.post')}}" method="post" >
+                <form action="{{route('ad.update.extend',$clickExtend->id)}}" method="post" >
 
                     @csrf
+                    @method('PUT')
                     <div class="form-row m-b-55">
                         <div class="name">Ad Name</div>&nbsp;
                         <div class="value">
                             <div class="row row-space">
                                 <div class="col-12">
                                     <div class="input-group-desc">
-                                        <input required class="input--style-5" type="text" name="adname" placeholder="Enter Ad Name">
+                                        <input required readonly value="{{$clickExtend->ad_name}}" class="input--style-5" type="text" placeholder="Enter Ad Name">
                                     </div>
                                 </div>
 
@@ -75,41 +69,9 @@
                         <div class="name">Ad Link</div>&nbsp;
                         <div class="value">
                             <div class="input-group">
-                                <input required class="input--style-5" type="text" name="adlink" placeholder="Enter Website/Content/Video Address That You Want To Post As An Advertisement">
+                                <input required readonly value="{{$clickExtend->ad_link}}" class="input--style-5" type="text" placeholder="Enter Website/Content/Video Address That You Want To Post As An Advertisement">
                             </div>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="name">Ad Description</div>&nbsp;
-                        <div class="value">
-                            <div class="input-group">
-                                <textarea class="form-control" name="adcontent"  cols="10" rows="10" placeholder="Enter Ad Description"></textarea>                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="name">Select Category </div>
-
-                        <select required name="categoryid" id="categoryid">
-                            <option  selected="selected">Choose option</option>
-                            @foreach($categoriesid as $data)
-                                <option value="{{$data->id}}">{{$data->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-
-                    <div class="form-row">
-                        <div class="name">Ad Duration</div>&nbsp;
-
-                        <select required name="adduration" id="adduration">
-                            <option  selected="selected">Choose option</option>
-                            <option value="5">5 seconds</option>
-                            <option value="10">10 seconds</option>
-                            <option value="30">30 seconds</option>
-                            <option value="60">60 seconds</option>
-                            <option value="120">120 seconds</option>
-                        </select>
                     </div>
 
 
@@ -119,7 +81,7 @@
                             <div class="row row-refine">
                                 <div class="col-12">
                                     <div class="input-group-desc">
-                                        <input readonly class="input--style-5" id="customer_name" min="1" type="number" name="adprice" placeholder="price will be automatically calculated here">
+                                        <input readonly value="{{$clickExtend->ad_price}}" class="input--style-5" id="customer_name" min="1" type="number" placeholder="price will be automatically calculated here">
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +92,7 @@
 
 
                     <div class="form-row m-b-55">
-                        <div class="name">Ad Click Target</div>&nbsp;
+                        <div class="name">Extended AdClicks</div>&nbsp;
                         <div class="value">
                             <div class="row row-refine">
                                 <div class="col-12">
@@ -160,7 +122,7 @@
                     </div>
 
                     <div>
-                        <center><button class="btn btn--radius-2 btn--red" type="submit">Create Advertisement</button></center>
+                        <center><button class="btn btn--radius-2 btn--red" type="submit">Update Advertisement</button></center>
                     </div>
                 </form>
             </div>
@@ -178,37 +140,37 @@
         let customer_total = document.querySelector('#totalprice');
         // let customer_phone = document.querySelector('#customer_phone');
         // let invoice_no = document.querySelector('#invoice_no');
-    // console.log(customer_id);
+        // console.log(customer_id);
 
 
-        categoryId.addEventListener('change', (e) => {
-            let id = e.target.value;
+        {{--categoryId.addEventListener('change', (e) => {--}}
+        {{--    let id = e.target.value;--}}
 
-            const url = "{{ url('post-fetch') }}/" + id;
-            fetch(url)
-                .then(res => res.json())
-                .then(res => {
-                    customer_name.value = res.customer.price;
+        {{--    const url = "{{ url('post-fetch') }}/" + id;--}}
+        {{--    fetch(url)--}}
+        {{--        .then(res => res.json())--}}
+        {{--        .then(res => {--}}
+        {{--            customer_name.value = res.customer.price;--}}
 
-                })
-        })
+        {{--        })--}}
+        {{--})--}}
 
-        let adduration = document.querySelector("#adduration");
+        {{--let adduration = document.querySelector("#adduration");--}}
 
-        adduration.addEventListener('change',(e)=>{
+        {{--adduration.addEventListener('change',(e)=>{--}}
 
-            var selectedValue = e.target.value;
+        {{--    var selectedValue = e.target.value;--}}
 
-            var id=categoryId.value;
+        {{--    var id=categoryId.value;--}}
 
-            const url = "{{ url('post-fetch') }}/" + id;
-            fetch(url)
-                .then(res => res.json())
-                .then(res => {
-                    customer_name.value = Number.parseFloat(res.customer.price) * Number.parseFloat(selectedValue);
+        {{--    const url = "{{ url('post-fetch') }}/" + id;--}}
+        {{--    fetch(url)--}}
+        {{--        .then(res => res.json())--}}
+        {{--        .then(res => {--}}
+        {{--            customer_name.value = Number.parseFloat(res.customer.price) * Number.parseFloat(selectedValue);--}}
 
-                })
-        })
+        {{--        })--}}
+        {{--})--}}
 
         let adclicks = document.querySelector("#adclicks");
 
@@ -229,7 +191,7 @@
 
 
     </script>
- @endpush
+@endpush
 
 <!-- Vendor JS-->
 <script src="{{asset('formAd')}}/vendor/select2/select2.min.js"></script>

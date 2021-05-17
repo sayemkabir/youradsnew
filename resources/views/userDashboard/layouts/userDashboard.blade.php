@@ -43,134 +43,216 @@
 
     </div>
 
+{{--    <div class="row">--}}
+{{--        <div class="col-lg-12">--}}
+{{--            <div class="card">--}}
+{{--                <div class="card-body">--}}
+
+{{--                </div>--}}
+{{--                </div>--}}
+{{--                </div>--}}
+{{--                </div>--}}
 
 
 
-    <div class="row">
+                <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
                     <div class="active-member">
                         <div class="table-responsive">
-                            <table class="table table-xs mb-0">
+                            <table class="table table-xs mb-0" style="display: block; height: 400px; overflow: auto;">
+                                <h1 style="color: aquamarine"> <center>Withdraws/Deposits</center></h1>
                                 <thead>
-                                <tr>
-                                    <th>Customers</th>
-                                    <th>Product</th>
-                                    <th>Country</th>
-                                    <th>Status</th>
-                                    <th>Payment Method</th>
-                                    <th>Activity</th>
+                                <tr >
+                                    <th><center>User</center></th>
+                                    <th><center>Payment Type</center></th>
+                                    <th><center>Requested Amount</center></th>
+                                    <th><center>Payment Method</center></th>
+                                    <th><center>Status</center></th>
+                                    <th><center>Request Created At</center></th>
+
                                 </tr>
                                 </thead>
 
 {{--                                @foreach()--}}
 
                                 <tbody>
+
+                                @foreach($depositShow as $key=>$data)
+
+                                    @if($data->status=="pending")
+                                    <tr>
+                                        <td><img src="{{url('/images/users/',$data->userDeposit->user_image)}}" class=" rounded-circle mr-3" alt="">{{$data->userDeposit->user_name}}</td>
+                                        <td><center>Deposit</center></td>
+                                        <td><center>{{$data->deposit_balance}}</center></td>
+                                        <td>
+                                            <span><center>{{$data->payment_method}}</center></span>
+                                        </td>
+                                        <td>
+                                            <center>
+                                                <i class="fa fa-circle-o text-warning  mr-2"></i> Pending
+                                            </center>
+                                            {{--                                        <br>--}}
+                                            {{--                                        <br>--}}
+                                            {{--                                        <div>--}}
+                                            {{--                                            <div class="progress" style="height: 6px">--}}
+                                            {{--                                                <div class="progress-bar bg-danger" style="width: 50%"></div>--}}
+                                            {{--                                            </div>--}}
+                                            {{--                                        </div>--}}
+                                        </td>
+                                        <td><center>{{$data->created_at}}</center></td>
+
+                                    </tr>
+                                    @endif
+                                    @endforeach
+
+                                @foreach($withdrawShow as $key=>$data)
+
+                                    @if($data->status=="pending")
+                                        <tr>
+                                            <td><img src="{{url('/images/users/',$data->userPaymentWithdrawRequest->user_image)}}" class=" rounded-circle mr-3" alt="">{{$data->userPaymentWithdrawRequest->user_name}}</td>
+                                            <td><center>Withdraw</center></td>
+                                            <td><center>{{$data->withdraw_balance}}</center></td>
+
+                                            <td>
+                                                <span><center>Bitcoin</center></span>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    <i class="fa fa-circle-o text-success  mr-2"></i> Processed
+                                                </center>{{--                                        <br>--}}
+                                                {{--                                        <br>--}}
+                                                {{--                                        <div>--}}
+                                                {{--                                            <div class="progress" style="height: 6px">--}}
+                                                {{--                                                <div class="progress-bar bg-success" style="width: 50%"></div>--}}
+                                                {{--                                            </div>--}}
+                                                {{--                                        </div>--}}
+                                            </td>
+                                            <td><center>{{$data->created_at}}</center></td>
+
+                                        </tr>
+                                    @endif
+                                @endforeach
+
+                                @foreach($withdrawShow as $key=>$data)
+
+                                    @if($data->status=="processed")
+                                        <tr>
+                                            <td><img src="{{url('/images/users/',$data->userPaymentWithdrawRequest->user_image)}}" class=" rounded-circle mr-3" alt="">{{$data->userPaymentWithdrawRequest->user_name}}</td>
+                                            <td><center>Withdraw</center></td>
+                                            <td><center>{{$data->withdraw_balance}}</center></td>
+
+                                            <td>
+                                                <span><center>Bitcoin</center></span>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    <i class="fa fa-circle-o text-success  mr-2"></i> Processed
+                                                </center>{{--                                        <br>--}}
+                                                {{--                                        <br>--}}
+                                                {{--                                        <div>--}}
+                                                {{--                                            <div class="progress" style="height: 6px">--}}
+                                                {{--                                                <div class="progress-bar bg-success" style="width: 50%"></div>--}}
+                                                {{--                                            </div>--}}
+                                                {{--                                        </div>--}}
+                                            </td>
+                                            <td><center>{{$data->created_at}}</center></td>
+
+                                        </tr>
+                                    @endif
+                                @endforeach
+
+                                    @foreach($depositShow as $key=>$data)
+
+                                    @if($data->status=="processed")
                                 <tr>
-                                    <td><img src="./images/avatar/1.jpg" class=" rounded-circle mr-3" alt="">Sarah Smith</td>
-                                    <td>iPhone X</td>
+                                    <td><img src="{{url('/images/users/',$data->userDeposit->user_image)}}" class=" rounded-circle mr-3" alt="">{{$data->userDeposit->user_name}}</td>
+                                    <td><center>Deposit</center></td>
+                                    <td><center>{{$data->deposit_balance}}</center></td>
+
                                     <td>
-                                        <span>United States</span>
+                                        <span><center>Bitcoin</center></span>
                                     </td>
                                     <td>
-                                        <div>
-                                            <div class="progress" style="height: 6px">
-                                                <div class="progress-bar bg-success" style="width: 50%"></div>
-                                            </div>
-                                        </div>
+                                        <center>
+                                            <i class="fa fa-circle-o text-success  mr-2"></i> Processed
+                                        </center>{{--                                        <br>--}}
+{{--                                        <br>--}}
+{{--                                        <div>--}}
+{{--                                            <div class="progress" style="height: 6px">--}}
+{{--                                                <div class="progress-bar bg-success" style="width: 50%"></div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
                                     </td>
-                                    <td><i class="fa fa-circle-o text-success  mr-2"></i> Paid</td>
-                                    <td>
-                                        <span>Last Login</span>
-                                        <span class="m-0 pl-3">10 sec ago</span>
-                                    </td>
+                                    <td><center>{{$data->created_at}}</center></td>
+
                                 </tr>
+                                    @endif
+                                @endforeach
+
+                                @foreach($withdrawShow as $key=>$data)
+
+                                    @if($data->status=="denied")
                                 <tr>
-                                    <td><img src="./images/avatar/2.jpg" class=" rounded-circle mr-3" alt="">Walter R.</td>
-                                    <td>Pixel 2</td>
-                                    <td><span>Canada</span></td>
+                                    <td><img src="{{url('/images/users/',$data->userPaymentWithdrawRequest->user_image)}}" class=" rounded-circle mr-3" alt="">{{$data->userPaymentWithdrawRequest->user_name}}</td>
+                                    <td><center>Withdraw</center></td>
+                                    <td><center>{{$data->withdraw_balance}}</center></td>
+
                                     <td>
-                                        <div>
-                                            <div class="progress" style="height: 6px">
-                                                <div class="progress-bar bg-success" style="width: 50%"></div>
-                                            </div>
-                                        </div>
+                                        <span><center>Bitcoin</center></span>
                                     </td>
-                                    <td><i class="fa fa-circle-o text-success  mr-2"></i> Paid</td>
                                     <td>
-                                        <span>Last Login</span>
-                                        <span class="m-0 pl-3">50 sec ago</span>
+                                        <center>
+                                            <i class="fa fa-circle-o text-success  mr-2"></i> Processed
+                                        </center>{{--                                        <br>--}}
+{{--                                        <br>--}}
+{{--                                        <div>--}}
+{{--                                            <div class="progress" style="height: 6px">--}}
+{{--                                                <div class="progress-bar bg-success" style="width: 50%"></div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
                                     </td>
+                                    <td><center>{{$data->created_at}}</center></td>
+
                                 </tr>
+                                    @endif
+                                @endforeach
+
+                                @foreach($depositShow as $key=>$data)
+
+                                    @if($data->status=="denied")
                                 <tr>
-                                    <td><img src="./images/avatar/3.jpg" class=" rounded-circle mr-3" alt="">Andrew D.</td>
-                                    <td>OnePlus</td>
-                                    <td><span>Germany</span></td>
+                                    <td><img src="{{url('/images/users/',$data->userDeposit->user_image)}}" class=" rounded-circle mr-3" alt="">{{$data->userDeposit->user_name}}</td>
+                                    <td><center>Deposit</center></td>
+                                    <td><center>{{$data->deposit_balance}}</center></td>
+
                                     <td>
-                                        <div>
-                                            <div class="progress" style="height: 6px">
-                                                <div class="progress-bar bg-danger" style="width: 50%"></div>
-                                            </div>
-                                        </div>
+                                        <span><center>Bitcoin</center></span>
                                     </td>
-                                    <td><i class="fa fa-circle-o text-danger  mr-2"></i> Pending</td>
                                     <td>
-                                        <span>Last Login</span>
-                                        <span class="m-0 pl-3">10 sec ago</span>
+
+
+                                        <center>
+                                            <i class="fa fa-circle-o text-danger  mr-2"></i> Denied
+                                        </center>{{--                                        <br>--}}
+{{--                                        <br>--}}
+{{--                                        <div>--}}
+{{--                                            <div class="progress" style="height: 6px">--}}
+{{--                                                <div class="progress-bar bg-danger" style="width: 50%"></div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
                                     </td>
+                                    <td><center>{{$data->created_at}}</center></td>
+
                                 </tr>
-                                <tr>
-                                    <td><img src="./images/avatar/6.jpg" class=" rounded-circle mr-3" alt=""> Megan S.</td>
-                                    <td>Galaxy</td>
-                                    <td><span>Japan</span></td>
-                                    <td>
-                                        <div>
-                                            <div class="progress" style="height: 6px">
-                                                <div class="progress-bar bg-success" style="width: 50%"></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td><i class="fa fa-circle-o text-success  mr-2"></i> Paid</td>
-                                    <td>
-                                        <span>Last Login</span>
-                                        <span class="m-0 pl-3">10 sec ago</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><img src="./images/avatar/4.jpg" class=" rounded-circle mr-3" alt=""> Doris R.</td>
-                                    <td>Moto Z2</td>
-                                    <td><span>England</span></td>
-                                    <td>
-                                        <div>
-                                            <div class="progress" style="height: 6px">
-                                                <div class="progress-bar bg-success" style="width: 50%"></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td><i class="fa fa-circle-o text-success  mr-2"></i> Paid</td>
-                                    <td>
-                                        <span>Last Login</span>
-                                        <span class="m-0 pl-3">10 sec ago</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><img src="./images/avatar/5.jpg" class=" rounded-circle mr-3" alt="">Elizabeth W.</td>
-                                    <td>Notebook Asus</td>
-                                    <td><span>China</span></td>
-                                    <td>
-                                        <div>
-                                            <div class="progress" style="height: 6px">
-                                                <div class="progress-bar bg-warning" style="width: 50%"></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td><i class="fa fa-circle-o text-warning  mr-2"></i> Pending</td>
-                                    <td>
-                                        <span>Last Login</span>
-                                        <span class="m-0 pl-3">10 sec ago</span>
-                                    </td>
-                                </tr>
+                                    @endif
+                                @endforeach
+
+
+
+
+
                                 </tbody>
 
 {{--                                @endforeach--}}

@@ -61,6 +61,11 @@ Route::get('/post/ads',[AdsController::class,'postAdsDashboard'])->name('post.ad
 Route::get('/post-fetch/{id}',[ApiController::class,'postAdsFetch'])->name('post.ad.fetch');
 
 
+//Ad Click Extend
+Route::get('/ad/clicks/extend/{id}',[AdsController::class,'extendAdClicks'])->name('ad.click.extend');
+Route::put('/ad/update/extend/{id}',[AdsController::class,'updateAdClicks'])->name('ad.update.extend');
+
+
 //Deposit
 Route::get('/balance/deposit',[PaymentController::class,'balanceDepositForm'])->name('balance.deposit.form');
 Route::post('/balance/deposit/success',[PaymentController::class,'balanceDepositSuccess'])->name('balance.deposit.success');
@@ -82,6 +87,7 @@ Route::get('/user/logout',[UserController::class,'userLogout'])->name('user.logo
     Route::get('/user/profile',[UserController::class,'userProfile'])->name('user.profile');
     Route::put('/user/details/update',[UserController::class,'userUpdateFrontend'])->name('user.update.frontend');
     Route::put('/user/details/wallet/update',[UserController::class,'userWalletUpdateFrontend'])->name('user.wallet.update.frontend');
+    Route::put('/user/details/photo/update',[UserController::class,'userPhotoUpdateFrontend'])->name('user.photo.update.frontend');
 
 });
 
@@ -163,3 +169,4 @@ Route::get('logout/admin',[AdminController::class,'adminLogout'])->name('admin.l
 });
 });
 
+// now()->format('Y-m-d h:i:s')

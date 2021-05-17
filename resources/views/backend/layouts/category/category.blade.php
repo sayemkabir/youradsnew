@@ -13,6 +13,12 @@
         </div>
     @endif
 
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger">{{$error}}</div>
+        @endforeach
+    @endif
+
     @if(session()->has('danger'))
 
         <div class="alert alert-danger">
@@ -74,14 +80,14 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="categoryname">Category Name</label>
-                            <input type="text" id="categoryname" name="categoryname" placeholder="Enter category name" class="form-control">
+                            <input required type="text" id="categoryname" name="categoryname" placeholder="Enter category name" class="form-control">
 
 
                         </div>
 
                         <div class="form-group">
                             <label for="categoryname">Category Name</label>
-                            <input type="number" id="categoryname" name="categoryprice" placeholder="Enter Price Here" class="form-control">
+                            <input required min="1" type="number" id="categoryname" name="categoryprice" placeholder="Enter Price Here" class="form-control">
 
 
                         </div>
@@ -89,14 +95,14 @@
                         <div class="form-group">
 
                             <label for="" >UPLOAD IMAGE</label><br>
-                            <input type="file" name="categoryImage" placeholder="Enter Image Here" >
+                            <input required type="file" name="categoryImage" placeholder="Enter Image Here" >
 
 
                         </div>
 
                         <div class="form-group">
                             <label for="categorydescription">Description</label><br>
-                            <textarea name="categorydescription" id="categorydescription" placeholder="Enter Description" class="form-control" cols="20" rows="5"></textarea>
+                            <textarea required name="categorydescription" id="categorydescription" placeholder="Enter Description" class="form-control" cols="20" rows="5"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">

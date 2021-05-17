@@ -18,6 +18,16 @@ class CategoryController extends Controller
 
     public function createCategory(Request $request)
     {
+        
+        $request->validate([
+            
+            'categoryname'=>'required',
+            'categoryImage'=>'required',
+            'categoryprice'=>'required',
+            'categorydescription'=>'required',
+            
+            
+        ]);
 
         $category_image="";
 
@@ -55,11 +65,37 @@ class CategoryController extends Controller
 
     public function categoryUpdatePost(Request $request,$id)
     {
+
+
+        $request->validate([
+
+            'categoryname'=>'required',
+            'categoryImage'=>'required',
+            'categoryprice'=>'required',
+            'categorydescription'=>'required',
+
+
+        ]);
+
+        $category_image="";
+
+        if ($request->hasFile('categoryImage')){
+
+            $file=$request->file('categoryImage');
+
+            if ($file->isValid()){
+
+                $category_image=date('Ymdhms').".".$file->getClientOriginalExtension();
+                $file->storeAs('categories',$category_image);
+            }
+        }
+        
+        
         $category=Category::find($id)->update([
-
-
+            
             'name' => $request->categoryname,
-//            'image'=>$category_image,
+            'image'=>$category_image,
+            'price'=>$request->categoryprice,
             'description' => $request->categorydescription
 
         ]);

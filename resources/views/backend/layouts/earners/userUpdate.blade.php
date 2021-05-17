@@ -4,6 +4,11 @@
 
 
     <form action="{{route('user.update',$user_edit->id)}}" method="post" enctype="multipart/form-data">
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger">{{$error}}</div>
+            @endforeach
+        @endif
 @method('PUT')
         @csrf
         <div class="container">
@@ -30,7 +35,7 @@
 
                     <div class="form-group" >
                         <label for="">Update Deposit:</label>
-                        <input required value="{{$user_edit->deposit_balance}}" type="number" name="updateDeposit" namespace="Enter E-mail" class="form-control">
+                        <input required min="1" value="{{$user_edit->deposit_balance}}" type="number" name="updateDeposit" namespace="Enter E-mail" class="form-control">
 
                     </div>
                     <div class="col-sm-10">

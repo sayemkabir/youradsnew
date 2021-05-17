@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserAd;
 use Illuminate\Http\Request;
+use App\Mail\AdvertiserAdsCreate;
 use App\Models\Ad;
 use App\Models\Category;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 
 class AdsController extends Controller
@@ -35,6 +37,19 @@ class AdsController extends Controller
 
     public function adsCreateForm(Request $request)
     {
+
+        $request->validate([
+
+            'adname'=>'required',
+            'adlink'=>'required',
+            'adcontent'=>'required',
+            'adclicks'=>'required',
+            'adduration'=>'required',
+            'categoryid'=>'required',
+            'adprice'=>'required|number',
+            'adtotalprice'=>'required',
+
+        ]);
 
 
         Ad::create([
@@ -167,6 +182,20 @@ class AdsController extends Controller
     public function advertisesAdsPost(Request $request)
     {
 
+        $request->validate([
+
+            'adname'=>'required',
+            'adlink'=>'required',
+            'adcontent'=>'required',
+            'adclicks'=>'required',
+            'adduration'=>'required',
+            'categoryid'=>'required',
+            'adprice'=>'required',
+            'adtotalprice'=>'required',
+
+        ]);
+
+
         $check=User::find(auth('user')->user()->id);
         $remaining=$check->deposit_balance;
         $withdrawAmount=$request->adtotalprice;
@@ -188,7 +217,7 @@ class AdsController extends Controller
 
             ]);
 
-            Mail::to(auth()->user()->email)->send(new BookingNotification($adsPayment));
+            Mail::to(auth('user')->user()->email)->send(new AdvertiserAdsCreate($adsPayment));
 
 
             User::where('id',$adsPayment->user_id)->decrement('deposit_balance',$adsPayment->total_price);
@@ -208,6 +237,28 @@ class AdsController extends Controller
 
         $categoriesid=Category::all();
         return view('userDashboard.layouts.userAdsCreate',compact('categoriesid'));
+    }
+
+
+    public function extendAdClicks($id)
+    {
+        $clickExtend=Ad::find($id);
+        return view('userDashboard.layouts.profile.adClickExtend',compact('clickExtend'));
+    }
+
+    public function updateAdClicks(Request $request,$id)
+    {
+        $updateAdClicks=Ad::find($id);
+
+        $updateAdClicks->update([
+
+            'ad_status'=>'active'
+
+        ]);
+        $updateAdClicks->increment('ad_clicks',$request->adclicks);
+        User::find(auth('user')->user()->id)->decrement('deposit_balance',$request->adtotalprice);
+
+        return redirect()->route('user.profile')->with('successUpdate','Ad Extended Successfully!!!');
     }
 
 

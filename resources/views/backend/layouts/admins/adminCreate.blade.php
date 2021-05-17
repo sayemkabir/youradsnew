@@ -10,6 +10,12 @@
             @endforeach
         @endif
 
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger">{{$error}}</div>
+                @endforeach
+            @endif
+
         @csrf
         <div class="container">
             <div class="row">
@@ -37,14 +43,14 @@
                     <div class="form-group">
 
                         <label for="">ENTER CONTACT NO:</label>
-                        <input required type="number" name="admincontact" class="form-control" >
+                        <input required min="1" type="number" name="admincontact" class="form-control" >
 
                     </div>
 
                     <div class="form-group">
                         <label for="">ENTER ROLE:</label>
                         <div class="col-sm-4">
-                            <select name="adminrole" class="form-control">
+                            <select required name="adminrole" class="form-control">
 
 
                                 <option value="">Select Admin Type</option>
@@ -61,7 +67,7 @@
                     <div class="col-sm-10">
                         <div class="form-group">
                             <label for="">UPLOAD PHOTO:</label><br>
-                            <input type="file" name="admin_image" placeholder="Please Select An Image">
+                            <input required type="file" name="admin_image" placeholder="Please Select An Image">
 
 
                         </div>
@@ -69,7 +75,7 @@
                     <div class="col-sm-4">
                         <div class="form-group" >
                             <label for="">STATUS:</label>
-                            <select type="option" name="adminstatus" id="" class="form-control">
+                            <select required type="option" name="adminstatus" id="" class="form-control">
                                 <option value="">Select Admin Status</option>
                                 <option value="Active">Active</option>
                                 <option value="Inactive">Inactive</option>

@@ -61,6 +61,13 @@
                                     {{ session()->get('success') }}
                                 </div>
                             @endif
+
+                                @if ($errors->any())
+                                    @foreach ($errors->all() as $error)
+                                        <div class="alert alert-danger">{{$error}}</div>
+                                    @endforeach
+                                @endif
+
                             <form class="text-left form-validate" action="{{route('user.create.frontend')}}" method="post">
                                 @csrf
                                 <div class="form-group-material">

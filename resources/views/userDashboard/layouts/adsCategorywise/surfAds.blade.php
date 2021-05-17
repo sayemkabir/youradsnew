@@ -4,7 +4,7 @@
 
     <div class="container-fluid">
 
-{{--        @if($surfads!=null)--}}
+        @if(count($surfads)>0)
         <div class="row">
             @foreach($surfads as $key=>$data)
             <div class="col-12">
@@ -31,9 +31,12 @@
             @endforeach
 
         </div>
-{{--        @else--}}
-{{--            <h2>hello</h2>--}}
-{{--        @endif--}}
+        @else
+
+           <center> <p>There's no ad currently in this category!!!<br>
+                   <a href="{{route('advertise.ads')}}">Create your Own Ad in this category NOW!!!</a></p></center>
+
+        @endif
     </div>
 
 

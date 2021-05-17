@@ -6,8 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Ad;
 use App\Models\UserAd;
+use App\Models\DepositBalance;
+use App\Models\WithdrawBalance;
+use App\Mail\UserCreated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -25,6 +29,15 @@ class UserController extends Controller
     public function createUser(Request $request)
     {
 
+        $request->validate([
+
+            'userName'=>'required',
+            'password'=>'required|min:6',
+            'email'=>'required|email',
+            'status'=>'required',
+            'UserImage'=>'required',
+
+        ]);
 
         $user_file = "";
 
@@ -83,6 +96,29 @@ class UserController extends Controller
     public function userUpdate(Request $request, $id)
     {
 
+        $request->validate([
+
+            'userName'=>'required',
+            'password'=>'required|min:6',
+            'email'=>'required|email',
+            'status'=>'required',
+            'updateDeposit'=>'required',
+            'UserImage'=>'required',
+
+        ]);
+
+        $user_file = "";
+
+        if ($request->hasFile('UserImage')) {
+
+            $file = $request->file('UserImage');
+            if ($file->isValid()) {
+
+                $user_file = date('Ymdhms') . "." . $file->getClientOriginalExtension();
+                $file->storeAs('users', $user_file);
+            }
+        }
+
         $user_update = User::find($id)->update([
 
             'user_name' => $request->userName,
@@ -90,7 +126,7 @@ class UserController extends Controller
             'email' => $request->email,
             'user_status' => $request->status,
             'deposit_balance' => $request->updateDeposit,
-//            'user_image' => $user_file
+            'user_image' => $user_file
 
 
         ]);
@@ -105,35 +141,52 @@ class UserController extends Controller
     {
 
 
-        $user_file = "";
+//        $user_file = "";
+//
+//        if ($request->hasFile('UserImage')) {
+//
+//            $file = $request->file('UserImage');
+//            if ($file->isValid()) {
+//
+//                $user_file = date('Ymdhms') . "." . $file->getClientOriginalExtension();
+//                $file->storeAs('users', $user_file);
+//            }
+//        }
 
-        if ($request->hasFile('UserImage')) {
+        $request->validate([
 
-            $file = $request->file('UserImage');
-            if ($file->isValid()) {
+            'userName'=>'required',
+            'password'=>'required|min:6',
+            'email'=>'required|email',
 
-                $user_file = date('Ymdhms') . "." . $file->getClientOriginalExtension();
-                $file->storeAs('users', $user_file);
-            }
-        }
+        ]);
 
 
-        User::create([
+        $userRegistration=User::create([
 
             'user_name' => $request->userName,
             'password' => bcrypt($request->password),
             'email' => $request->email,
-            'user_image' => $user_file
+            'user_image' => 'unnamed.png'
 
 
         ]);
+
+        Mail::to($request->email)->send(new UserCreated($userRegistration));
+
+
+
         return redirect()->route('registration.form')->with('success', 'Account Created successfully !');
     }
 
 
     public function userDashboard()
     {
-        return view('userDashboard.layouts.userDashboard');
+
+        $depositShow=DepositBalance::with('userDeposit')->orderby('created_at','desc')->get();
+        $withdrawShow=WithdrawBalance::with('userPaymentWithdrawRequest')->orderby('created_at','desc')->get();
+
+        return view('userDashboard.layouts.userDashboard',compact('depositShow','withdrawShow'));
     }
 
 
@@ -193,25 +246,67 @@ class UserController extends Controller
 
     public function userUpdateFrontend(Request $request)
     {
+//        dd($request->all());
+//
+//        $user_file = "";
+//
+//        if ($request->hasFile('UserImage')) {
+//
+//            $file = $request->file('UserImage');
+//            if ($file->isValid()) {
+//
+//                $user_file = date('Ymdhms') . "." . $file->getClientOriginalExtension();
+//                $file->storeAs('users', $user_file);
+//            }
+//        }
+//        $oldPassCheck=User::find(auth('user')->user()->id)->where('password',bcrypt($request->oldPassword));
+//dd($oldPassCheck);
+        $request->validate([
 
-        $user_update = User::find(auth('user')->user()->id)->update([
-
-            'user_name' => $request->userName,
-            'password' => bcrypt($request->password),
-            'email' => $request->email,
-            'wallet_address' => $request->walletaddress,
-//            'user_status' => $request->status,
-//            'deposit_balance' => $request->updateDeposit,
-//            'user_image' => $user_file
-
+            'email' => 'required|email',
+            'password' => 'required|min:6'
 
         ]);
-        return redirect()->back()->with('success', 'User Details Updated Successfully');
+
+        $user_credentials = $request->only('email', 'password');
+//        dd($user_credentials);
+        if (Auth::guard('user')->attempt($user_credentials)) {
+
+            $user_update = User::find(auth('user')->user()->id)->update([
+
+                'user_name' => $request->userName,
+                'password' => bcrypt($request->newPassword),
+                'email' => $request->newEmail,
+//            'user'
+//            'user_status' => $request->status,
+//            'deposit_balance' => $request->updateDeposit,
+
+
+            ]);
+            return redirect()->back()->with('success', 'User Details Updated Successfully');
+
+        }else{
+
+            return redirect()->back()->with('oldPassword','Old Password Does not match');
+        }
+
+
 
 
     }
 public function userWalletUpdateFrontend(Request $request)
-    {
+{
+
+    $request->validate([
+
+        'email' => 'required|email',
+        'password' => 'required|min:6'
+
+    ]);
+
+    $user_credentials = $request->only('email', 'password');
+//        dd($user_credentials);
+    if (Auth::guard('user')->attempt($user_credentials)) {
 
         $user_update = User::find(auth('user')->user()->id)->update([
 
@@ -222,6 +317,47 @@ public function userWalletUpdateFrontend(Request $request)
 
         ]);
         return redirect()->back()->with('successwallet', 'Wallet Updated Successfully');
+
+
+    }else{
+        return redirect()->back()->with('CanceledWallet', 'Entered Password is incorrect. Please Try Again');
+
+    }
+}
+
+    public function userPhotoUpdateFrontend(Request $request)
+    {
+
+        $request->validate(
+            [
+                'UserImage'=>'required',
+            ]
+        );
+
+
+        $user_file = "";
+
+        if ($request->hasFile('UserImage')) {
+
+            $file = $request->file('UserImage');
+            if ($file->isValid()) {
+
+                $user_file = date('Ymdhms') . "." . $file->getClientOriginalExtension();
+                $file->storeAs('users', $user_file);
+            }
+        }
+
+        $user_update = User::find(auth('user')->user()->id)->update([
+
+
+            'user_image' => $user_file,
+//
+
+
+        ]);
+        return redirect()->back()->with('successPhoto', 'Photo Updated Successfully');
+
+
 
 
     }
