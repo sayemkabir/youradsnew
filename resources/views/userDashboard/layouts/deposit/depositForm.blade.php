@@ -56,7 +56,7 @@
                 <br>
 
                 <div  class="form-row">
-                    <div style="width: 195px;" class="name">Chose a payment method: </div>
+                    <div style="width: 200px;" class="name">Chose a payment method: </div>
                     <div class="value">
                         <div class="input-group">
                             <div class="rs-select2 js-select-simple select--no-search">

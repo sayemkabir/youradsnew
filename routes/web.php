@@ -37,6 +37,9 @@ Route::get('/login/form',[UserController::class,'loginForm'])->name('login.form'
 Route::post('/login/user',[UserController::class,'userValidate'])->name('user.login');
 Route::get('/registration/form',[UserController::class,'registrationForm'])->name('registration.form');
 Route::post('/create/account',[UserController::class,"createUserFrontend"])->name('user.create.frontend');
+Route::get('/password/recovery',[UserController::class,'passwordRecovery'])->name('password.recovery');
+Route::post('/password/recovery/validate',[UserController::class,'passwordRecoveryValidate'])->name('password.recovery.validate');
+
 
 
 Route::group(['middleware'=>'user-auth'],function (){

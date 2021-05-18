@@ -9,6 +9,7 @@ use App\Models\UserAd;
 use App\Models\DepositBalance;
 use App\Models\WithdrawBalance;
 use App\Mail\UserCreated;
+use App\Mail\RecoverPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -362,6 +363,37 @@ public function userWalletUpdateFrontend(Request $request)
 
     }
 
+
+    public function passwordRecovery()
+    {
+        return view('frontend.layouts.login.passwordRecovery');
+    }
+
+
+    public function passwordRecoveryValidate(Request $request)
+    {
+        $request->validate([
+
+            'email'=>'required|email'
+
+        ]);
+
+        $userEmailValidate=User::where('email',$request->email)->get();
+//        dd(count($userEmailValidate))
+        if (count($userEmailValidate)!=0)
+        {
+
+            Mail::to($request->email)->send(new RecoverPassword($userEmailValidate));
+            return redirect()->back()->with('success','An email was sent to your mailbox. please check and recover your password!!!');
+
+        }else{
+
+            return redirect()->back()->with('successError','Your entered mail did not MATCH with our Database. Please try again with correct email!!!');
+        }
+
+
+
+    }
 
 }
 

@@ -82,7 +82,7 @@ return redirect()->back()->with('success','Requested Amount Exceeds Your Main Ba
     public function depositRequests()
     {
         $title='Deposit Requests';
-        $deposit=DepositBalance::with('userDeposit')->paginate(5);
+        $deposit=DepositBalance::with('userDeposit')->orderby('created_at','desc')->paginate(5);
 //        dd($deposit);
         return view('backend.layouts.Payment.depositRequests',compact('deposit','title'));
 
@@ -91,7 +91,7 @@ return redirect()->back()->with('success','Requested Amount Exceeds Your Main Ba
     public function withdrawRequests()
     {
         $title='Withdraw Requests';
-        $deposit=WithdrawBalance::with('userPaymentWithdrawRequest')->paginate('5');
+        $deposit=WithdrawBalance::with('userPaymentWithdrawRequest')->orderby('created_at','desc')->paginate('5');
         return view('backend.layouts.Payment.withdrawRequest',compact('deposit','title'));
     }
 

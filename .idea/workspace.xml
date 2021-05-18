@@ -5,28 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ee3e7ef-f75f-4759-b870-869da64b31fe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/mail/adPaymentMail.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/mail/userRegistration.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/userDashboard/layouts/profile/adClickExtend.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/login/passwordRecovery.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/AdsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/AdsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/CategoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/PaymentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/PaymentController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/layouts/admins/adminCreate.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/admins/adminCreate.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/layouts/admins/adminUpdateForm.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/admins/adminUpdateForm.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/layouts/ads/adsCreate.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/ads/adsCreate.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/layouts/category/category.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/category/category.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/layouts/category/categoryUpdate.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/category/categoryUpdate.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/layouts/earners/earnerCreate.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/earners/earnerCreate.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/layouts/earners/userUpdate.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/earners/userUpdate.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/layouts/login/registrationWeb.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/login/registrationWeb.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/userDashboard/layouts/adsCategorywise/surfAds.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/userDashboard/layouts/adsCategorywise/surfAds.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/layouts/login/loginWeb.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/login/loginWeb.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/userDashboard/layouts/deposit/depositForm.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/userDashboard/layouts/deposit/depositForm.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/userDashboard/layouts/profile/userProfile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/userDashboard/layouts/profile/userProfile.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/userDashboard/layouts/userAdsCreate.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/userDashboard/layouts/userAdsCreate.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/userDashboard/layouts/userDashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/userDashboard/layouts/userDashboard.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/userDashboard/layouts/withdraw/withdrawForm.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/userDashboard/layouts/withdraw/withdrawForm.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -253,7 +237,9 @@
       <workItem from="1620712421666" duration="23167000" />
       <workItem from="1620895981641" duration="3228000" />
       <workItem from="1620946631582" duration="13724000" />
-      <workItem from="1621230559224" duration="9593000" />
+      <workItem from="1621230559224" duration="11873000" />
+      <workItem from="1621270950477" duration="6440000" />
+      <workItem from="1621317006902" duration="3632000" />
     </task>
     <servers />
   </component>

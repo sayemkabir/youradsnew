@@ -43,7 +43,7 @@
                     <div class="info d-flex align-items-center">
                         <div class="content">
                             <div class="logo">
-                                <h1>Login</h1>
+                                <h1>Password Recovery</h1>
                             </div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                 <div class="col-lg-6 bg-white">
                     <div class="form d-flex align-items-center">
                         <div class="content">
-                            <form action="{{route('user.login')}}" method="post" class="form-validate">
+                            <form action="{{route('password.recovery.validate')}}" method="post" class="form-validate">
 
                                 @csrf
 
@@ -60,6 +60,13 @@
 
                                     <div class="alert alert-success">
                                         {{ session()->get('success') }}
+                                    </div>
+                                @endif
+
+                                @if(session()->has('successError'))
+
+                                    <div class="alert alert-danger">
+                                        {{ session()->get('successError') }}
                                     </div>
                                 @endif
 
@@ -78,12 +85,9 @@
                                     <input id="login-username" type="text" name="email" required data-msg="Please enter your username" class="input-material">
                                     <label for="login-username" class="label-material">Email</label>
                                 </div>
-                                <div class="form-group">
-                                    <input id="login-password" type="password" name="password" required data-msg="Please enter your password" class="input-material">
-                                    <label for="login-password" class="label-material">Password</label>
-                                </div><button type="submit" class="btn btn-primary">Login</button>
+                               <button type="submit" class="btn btn-primary">Reset Password</button>
                                 <!-- This should be submit button but I replaced it with <a> for demo purposes-->
-                            </form><a href="{{route('password.recovery')}}" class="forgot-pass">Forgot Password?</a><br><small>Do not have an account? </small><a href="{{route('registration.form')}}" class="signup">Signup</a>
+                            </form>
                         </div>
                     </div>
                 </div>
