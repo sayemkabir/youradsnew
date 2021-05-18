@@ -16,10 +16,13 @@ class RecoverPassword extends Mailable
      *
      * @return void
      */
-    protected $userEmailValidate;
-    public function __construct($userEmailValidate)
+    public $userEmailValidate;
+
+    public $token;
+    public function __construct($userEmailValidate,$token)
     {
         $this->userEmailValidate=$userEmailValidate;
+        $this->token = $token;
     }
 
     /**
@@ -29,6 +32,6 @@ class RecoverPassword extends Mailable
      */
     public function build()
     {
-        return $this->view('backend.layouts.login.login');
+        return $this->view('frontend.layouts.login.mailView');
     }
 }

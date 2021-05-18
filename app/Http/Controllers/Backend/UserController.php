@@ -5,14 +5,18 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Ad;
+use App\Models\PasswordReset;
 use App\Models\UserAd;
 use App\Models\DepositBalance;
 use App\Models\WithdrawBalance;
 use App\Mail\UserCreated;
 use App\Mail\RecoverPassword;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -366,6 +370,7 @@ public function userWalletUpdateFrontend(Request $request)
 
     public function passwordRecovery()
     {
+
         return view('frontend.layouts.login.passwordRecovery');
     }
 
@@ -378,12 +383,26 @@ public function userWalletUpdateFrontend(Request $request)
 
         ]);
 
-        $userEmailValidate=User::where('email',$request->email)->get();
+        $userEmailValidate=User::where('email',$request->email)->first();
+
+        $token = Str::random(40);
+
+//        $passwordRest = DB::table('password_resets')->insert([
+//            'email'=>$request->email,
+//            'token'=>$token
+//        ]);
+
+
+
 //        dd(count($userEmailValidate))
-        if (count($userEmailValidate)!=0)
+        if ($userEmailValidate)
         {
 
-            Mail::to($request->email)->send(new RecoverPassword($userEmailValidate));
+            $passwordRest = PasswordReset::insert([
+                'email'=>$request->email,
+                'token'=>$token
+            ]);
+            Mail::to($request->email)->send(new RecoverPassword($userEmailValidate,$token));
             return redirect()->back()->with('success','An email was sent to your mailbox. please check and recover your password!!!');
 
         }else{
@@ -394,6 +413,42 @@ public function userWalletUpdateFrontend(Request $request)
 
 
     }
+
+
+    public function passwordRecoveryForm($id)
+    {
+//        dd($id);
+        $tokenValidate=PasswordReset::where('token',$id)->first();
+
+
+        if ($tokenValidate)
+
+        {
+            return view('frontend.layouts.login.passwordForm',compact('tokenValidate'));
+
+        }else{
+
+            return redirect()->route('password.recovery')->with('successError','Token Expired. Try again.');
+
+
+        }
+
+//        dd($tokenValidate);
+
+    }
+
+    public function passwordUpdate(Request $request)
+    {
+        $passwordUpdate=User::where('email',$request->email)->update([
+
+            'password'=>bcrypt($request->password)
+
+        ]);
+
+        $passResetDelete=PasswordReset::where('email',$request->email)->delete();
+        return redirect()->route('login.form')->with('success','Password Changed Successfully. Do-Login.');
+    }
+
 
 }
 

@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ee3e7ef-f75f-4759-b870-869da64b31fe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/login/passwordRecovery.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/login/mailView.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/login/passwordForm.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/PaymentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/PaymentController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/layouts/login/loginWeb.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/login/loginWeb.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/userDashboard/layouts/deposit/depositForm.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/userDashboard/layouts/deposit/depositForm.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/userDashboard/layouts/withdraw/withdrawForm.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/userDashboard/layouts/withdraw/withdrawForm.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Mail/RecoverPassword.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/RecoverPassword.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -239,7 +238,7 @@
       <workItem from="1620946631582" duration="13724000" />
       <workItem from="1621230559224" duration="11873000" />
       <workItem from="1621270950477" duration="6440000" />
-      <workItem from="1621317006902" duration="3632000" />
+      <workItem from="1621317006902" duration="10307000" />
     </task>
     <servers />
   </component>
