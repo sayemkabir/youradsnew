@@ -11,6 +11,7 @@ use App\Models\DepositBalance;
 use App\Models\WithdrawBalance;
 use App\Mail\UserCreated;
 use App\Mail\RecoverPassword;
+use App\Mail\UserEmailVerify;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
@@ -93,7 +94,7 @@ class UserController extends Controller
     public function userUpdateForm($id)
     {
         $title = "User Update Form";
-        $user_edit = User::find($id);
+        $user_edit = User::find($id); 
         return view('backend.layouts.earners.userUpdate', compact('title', 'user_edit'));
     }
 
@@ -162,7 +163,7 @@ class UserController extends Controller
 
             'userName'=>'required',
             'password'=>'required|min:6',
-            'email'=>'required|email',
+            'email'=>'required|email|unique:users',
 
         ]);
 
@@ -188,8 +189,8 @@ class UserController extends Controller
     public function userDashboard()
     {
 
-        $depositShow=DepositBalance::with('userDeposit')->orderby('created_at','desc')->get();
-        $withdrawShow=WithdrawBalance::with('userPaymentWithdrawRequest')->orderby('created_at','desc')->get();
+        $depositShow=DepositBalance::with('userDeposit')->where('user_id',auth('user')->user()->id)->orderby('created_at','desc')->get();
+        $withdrawShow=WithdrawBalance::with('userPaymentWithdrawRequest')->where('user_id',auth('user')->user()->id)->orderby('created_at','desc')->get();
 
         return view('userDashboard.layouts.userDashboard',compact('depositShow','withdrawShow'));
     }
@@ -428,7 +429,7 @@ public function userWalletUpdateFrontend(Request $request)
 
         }else{
 
-            return redirect()->route('password.recovery')->with('successError','Token Expired. Try again.');
+            return redirect()->route('password.recovery')->with('successError','Token Expired. RESET your password again by using your email !!!');
 
 
         }
@@ -448,6 +449,37 @@ public function userWalletUpdateFrontend(Request $request)
         $passResetDelete=PasswordReset::where('email',$request->email)->delete();
         return redirect()->route('login.form')->with('success','Password Changed Successfully. Do-Login.');
     }
+
+
+    public function userEmailVerificationMailer(Request $request)
+    {
+
+        $userEmail=User::where('email',auth('user')->user()->email)->first();
+        Mail::to($request->email)->send(new UserEmailVerify($userEmail));
+        return redirect()->route('user.profile')->with('successEmail','An verification link was sent to your email !!!');
+    }
+
+    public function userEmailValidationMessage($id)
+    {
+        $userEmailCheck=User::where('email',decrypt($id))->where('v_status','not_verified')->first();
+
+
+        if ($userEmailCheck){
+        $userEmailCheck->update([
+
+            'v_status'=>'verified'
+
+        ]);
+
+        return view('frontend.layouts.login.userEmailMessage');
+
+        }else{
+
+            return view('frontend.layouts.login.userEmailMessageVerified');
+        }
+
+    }
+
 
 
 }

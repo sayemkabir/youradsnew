@@ -59,19 +59,47 @@
 {{--                                    </ul>--}}
 {{--                                </div>--}}
                             </div>
+                            <span>@if(session()->has('successEmail'))
 
-{{--                            <ul class="card-profile__info">--}}
-{{--                                <li><strong class="text-dark mr-4">Email</strong> <span>{{auth('user')->user()->email}}</span></li>--}}
-{{--                            </ul>--}}
+                                    <div class="alert alert-success">
+                                                                            {{ session()->get('successEmail') }}
+                                                                        </div>
+                                @endif</span>
+
+                            <ul class="card-profile__info">
+                                <li><p><strong style="color: darkred;" >Email:</strong></p></li>
+                                     <li><span><h4>{{auth('user')->user()->email}}</h4></span></li>
+                                <br>
+                                @if(auth('user')->user()->v_status=='not_verified')
+
+
+                                        <form action="{{route('user.email.verification.mailer')}}" method="post">
+                                            @csrf
+                                        <input type="email" hidden value="{{auth('user')->user()->email}}" name="email">
+                                        <button type="submit" style="padding: 0px 24px" class="btn btn-danger"><i class="fas fa-times"></i> &nbsp;Not Verified</button>
+                                        <a  >Verify Now</a>
+                                    </form>
+                                    </center>
+
+                                @else
+                                    <center>
+                                    <button style="padding: 0px 44px" class="btn btn-success"><i class="fas fa-check"></i> &nbsp;Verified</button>
+                                    </center>
+                                @endif
+
+
+
+                            </ul>
+
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8 col-xl-9">
+                <div class="col-lg-8 col-xl-9" style="background: black">
                     <div class="card">
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="background: black">
                             <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">User Profile</h4>
+                                <div class="card-body" style="background: black">
+
                                     <!-- Nav tabs -->
                                     <div class="default-tab">
                                         <ul class="nav nav-tabs mb-3" role="tablist">
@@ -83,7 +111,7 @@
                                             </li>
                                             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#photo">Update Profile Photo</a>
                                             </li>
-                                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#message">My Ads</a>
+                                            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#message">My Ads</a>
                                             </li>
                                         </ul>
                                         <div class="tab-content">

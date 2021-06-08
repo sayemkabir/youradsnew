@@ -20,7 +20,7 @@
 
                             <p>
 
-                                <a type="submit" href="{{route('user.dashboard')}}" class="btn mb-1 btn-flat btn-outline-light"><i class="icon icon-check"></i>&nbsp;Go Back To Dashboard</a>
+                                <a style="background: midnightblue" type="submit" href="{{route('user.dashboard')}}" class="btn mb-1 btn-flat btn-outline-light"><i class="icon icon-check"></i>&nbsp;Go Back To Dashboard</a>
 
 
                             </p>

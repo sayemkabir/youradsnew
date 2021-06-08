@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\PaymentController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Frontend\HomepageController;
+use App\Http\Controllers\Frontend\TicketController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\CategoryController;
@@ -41,10 +42,18 @@ Route::get('/password/recovery/',[UserController::class,'passwordRecovery'])->na
 Route::post('/password/recovery/validate',[UserController::class,'passwordRecoveryValidate'])->name('password.recovery.validate');
 Route::get('/password/recovery/form/{token}',[UserController::class,'passwordRecoveryForm'])->name('password.form');
 Route::put('/password/update',[UserController::class,'passwordUpdate'])->name('password.update');
+Route::get('/user/email/validate/message/{id}',[UserController::class,'userEmailValidationMessage'])->name('user.email.validation.message');
+
 
 
 
 Route::group(['middleware'=>'user-auth'],function (){
+
+
+    //HomePage Auth
+
+//    Route::get('/auth',[HomepageController::class,'homepageAuth'])->name('home.page.auth');
+
 
 
 //USER DASHBOARD
@@ -77,6 +86,13 @@ Route::post('/balance/deposit/success',[PaymentController::class,'balanceDeposit
     Route::get('/deposit/balance/message',[PaymentController::class,'depositBalanceMessage'])->name('deposit.balance.message');
 
 
+//Deposit From Main Balance
+Route::get('/balance/deposit/fromMain',[PaymentController::class,'depositFormMain'])->name('balance.deposit.form.main');
+Route::post('/balance/deposit/credit',[PaymentController::class,'depositMainBalance'])->name('deposit.main.balance.credit');
+
+//Deposit Categories
+Route::get('balance/deposit/categories',[PaymentController::class,'depositCategory'])->name('deposit.category');
+
     //Withdraw
     Route::get('/balance/withdraw',[PaymentController::class,'balanceWithdraw'])->name('balance.withdraw.form');
     Route::post('/balance/withdraw/success',[PaymentController::class,'balanceWithdrawSuccess'])->name('balance.withdraw.success');
@@ -93,6 +109,11 @@ Route::get('/user/logout',[UserController::class,'userLogout'])->name('user.logo
     Route::put('/user/details/update',[UserController::class,'userUpdateFrontend'])->name('user.update.frontend');
     Route::put('/user/details/wallet/update',[UserController::class,'userWalletUpdateFrontend'])->name('user.wallet.update.frontend');
     Route::put('/user/details/photo/update',[UserController::class,'userPhotoUpdateFrontend'])->name('user.photo.update.frontend');
+    Route::post('/user/email/verification/mailer',[UserController::class,'userEmailVerificationMailer'])->name('user.email.verification.mailer');
+
+
+//Tickets
+Route::post('/ticket/create',[TicketController::class,'userTicket'])->name('user.ticket');
 
 });
 
@@ -111,12 +132,14 @@ Route::group(['prefix'=>'back'],function (){
     Route::get('/login/form',[AdminController::class,'adminLogin'])->name('login.view');
     Route::post('login/admin',[AdminController::class,'adminValidate'])->name('admin.login');
     Route::get('ads/post/{id}',[AdsController::class,'adsPost'])->name('ads.post');
+    Route::get('ads/credit/{id}',[AdsController::class,'adsCredit'])->name('ads.credit');
 
 
     Route::group(['middleware'=>'auth'],function (){
 
 //dashboard
 Route::get('/',[DashboardController::class,'viewDashboard'])->name('dashboard');
+//Route::get('/welcome',[DashboardController::class,'welcome'])->name('welcome');
 
 //Admin
 Route::get('/admin/view',[AdminController::class,'viewAdmin'])->name('admin.view');
@@ -164,11 +187,18 @@ Route::get('/withdraw/balance/update/deny/{id}',[PaymentController::class,'withd
 Route::get('/withdraw/balance/update/deny/balance/{id}',[PaymentController::class,'withdrawBalanceUpdateDenyBalance'])->name('withdraw.balance.update.deny.balance');
 
 
-
 //Admin Login
 
 Route::get('logout/admin',[AdminController::class,'adminLogout'])->name('admin.logout');
 
+//Report Generate
+
+Route::get('/report/withdraw',[PaymentController::class,'reportWithdraw'])->name('report.withdraw');
+Route::get('/report/deposit',[PaymentController::class,'reportDeposit'])->name('report.deposit');
+
+//Ticket
+Route::get('/tickets',[TicketController::class,'ticketView'])->name('ticket.view');
+Route::get('/ticket/delete/{id}',[TicketController::class,'ticketDelete'])->name('ticket.delete');
 
 
 });

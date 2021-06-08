@@ -34,7 +34,7 @@
     <link href="{{asset('formAd')}}/css/main.css" rel="stylesheet" media="all">
 </head>
 
-<body>
+<body><br>
 {{--                                                <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">--}}
 <div class="wrapper wrapper--w790">
     <div class="card card-5">
@@ -55,10 +55,10 @@
 
 
 
-        <div class="card-body">
+        <div class="card-body" style="background: #90a8d4">
             <form action="{{route('balance.withdraw.success')}}" method="post">
                 @csrf
-                <h1><center>WITHDRAW</center></h1>
+                <h1 style="color: aqua"><center>WITHDRAW</center></h1>
                 <br>
 
                 <div  class="form-row">

@@ -1,6 +1,12 @@
 @extends('backend.welcome')
 @section('operation')
 
+
+
+    <center><a href="{{route('report.withdraw')}}"><button type="button"  class="btn btn-primary align-content-center" >
+                <i class="icon-pie-chart"></i> &nbsp; Generate Report
+            </button></a></center><br>
+
     @if(session()->has('success'))
 
         <div class="alert alert-success">
@@ -8,13 +14,14 @@
         </div>
     @endif
 
+
+
     <table class="table table-bordered table-hover ">
 
         <thead>
 
         <th scope="col">Payment Id</th>
 
-        <th scope="col">User Id</th>
         <th scope="col">User Name</th>
         <th scope="col">E-mail</th>
 
@@ -29,10 +36,10 @@
         <tbody>
 
 
+
         @foreach($deposit as $data)
             <tr>
                 <th scope="row">{{$data->id}}</th>
-                <td>{{$data->user_id}}</td>
                 <td>{{$data->userPaymentWithdrawRequest->user_name}}</td>
                 <td>{{$data->userPaymentWithdrawRequest->email}}</td>
                 <td>{{$data->withdraw_balance}}</td>
@@ -64,10 +71,10 @@
             </tr>
         @endforeach
 
-
-
         </tbody>
     </table>
+
+
     <br>
 
     {{$deposit->links()}}

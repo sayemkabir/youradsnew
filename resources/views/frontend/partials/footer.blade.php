@@ -1,6 +1,6 @@
 
     <div class="copyright">
-        &copy; Copyright <strong><span>FlexStart</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>YourAds</span></strong>. All Rights Reserved
     </div>
 
 

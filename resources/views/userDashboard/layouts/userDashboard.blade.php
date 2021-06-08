@@ -6,14 +6,14 @@
     <div class="row">
         <div class="col-lg-6 col-sm-6">
             <div class="card gradient-1">
-                <div class="card-body">
-                    <h3 class="card-title text-white">Balance</h3><br>
+                <div class="card-body" style="background: #0d1313">
+                    <h3  style="color: aqua">Balance</h3><br>
                     <div class="d-inline-block">
-                        <h2 class="text-white">$ {{auth('user')->user()->balance}}</h2>
+                        <h2 style="color: deepskyblue">$ {{auth('user')->user()->balance}}</h2>
 
                         <br>
 
-                        <a href="{{route('balance.withdraw.form')}}" type="button" class="btn mb-1 btn-primary btn-lg">Withdraw</a>
+                        <a  href="{{route('balance.withdraw.form')}}" type="button" class="btn mb-1 btn-primary btn-lg">Withdraw</a>
 
                     </div>
                     {{--                            <button type="button" class="btn mb-1 btn-rounded btn-primary" disabled="disabled">Primary</button>--}}
@@ -24,14 +24,14 @@
         </div>
         <div class="col-lg-6 col-sm-6">
             <div class="card gradient-2  ">
-                <div class="card-body">
-                    <h3 class="card-title text-white">Purchase Balance</h3><br>
+                <div class="card-body" style="background: #0d1313; ">
+                    <h3 style="color: cyan">Purchase Balance</h3><br>
                     <div class="d-inline-block">
-                        <h2 class="text-white">$ {{auth('user')->user()->deposit_balance}}</h2>
+                        <h2 style="color: deepskyblue ">$ {{auth('user')->user()->deposit_balance}}</h2>
 
                         <br>
 
-                        <a href="{{route('balance.deposit.form')}}" type="button" class="btn mb-1 btn-primary btn-lg">Deposit</a>
+                        <a href="{{route('deposit.category')}}" type="button" class="btn mb-1 btn-primary btn-lg">Deposit</a>
 
                     </div>
                     {{--                            <button type="button" class="btn mb-1 btn-rounded btn-primary" disabled="disabled">Primary</button>--}}
@@ -58,26 +58,26 @@
                 <div class="row">
         <div class="col-lg-12">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body" style="background: black">
                     <div class="active-member">
                         <div class="table-responsive">
-                            <table class="table table-xs mb-0" style="display: block; height: 400px; overflow: auto;">
-                                <h1 style="color: aquamarine"> <center>Withdraws/Deposits</center></h1>
-                                <thead>
-                                <tr >
-                                    <th><center>User</center></th>
-                                    <th><center>Payment Type</center></th>
-                                    <th><center>Requested Amount</center></th>
-                                    <th><center>Payment Method</center></th>
-                                    <th><center>Status</center></th>
-                                    <th><center>Request Created At</center></th>
+                            <table class="table table-xs mb-0" style="display: block; height: 400px; overflow: auto; ">
+                                <h2 style="color: #868989"> <center> Withdraws/Deposits</center></h2>
+                                <thead >
+                                <tr style="color: aqua; ">
+                                    <th style="position: sticky; top: 0; background: black"><center>User</center></th>
+                                    <th style="position: sticky; top: 0; background: black"><center>Payment Type</center></th>
+                                    <th style="position: sticky; top: 0; background: black"><center>Requested Amount</center></th>
+                                    <th style="position: sticky; top: 0; background: black"><center>Payment Method</center></th>
+                                    <th style="position: sticky; top: 0; background: black"><center>Status</center></th>
+                                    <th style="position: sticky; top: 0; background: black"><center>Request Created At</center></th>
 
                                 </tr>
                                 </thead>
 
 {{--                                @foreach()--}}
 
-                                <tbody>
+                                <tbody style="color: #00f3ff6b">
 
                                 @foreach($depositShow as $key=>$data)
 
@@ -116,11 +116,11 @@
                                             <td><center>{{$data->withdraw_balance}}</center></td>
 
                                             <td>
-                                                <span><center>Bitcoin</center></span>
+                                                <span><center>{{$data->payment_method}}</center></span>
                                             </td>
                                             <td>
                                                 <center>
-                                                    <i class="fa fa-circle-o text-success  mr-2"></i> Processed
+                                                    <i class="fa fa-circle-o text-warning  mr-2"></i> Pending
                                                 </center>{{--                                        <br>--}}
                                                 {{--                                        <br>--}}
                                                 {{--                                        <div>--}}
@@ -172,7 +172,7 @@
                                     <td><center>{{$data->deposit_balance}}</center></td>
 
                                     <td>
-                                        <span><center>Bitcoin</center></span>
+                                        <span><center>{{$data->payment_method}}</center></span>
                                     </td>
                                     <td>
                                         <center>
@@ -204,7 +204,7 @@
                                     </td>
                                     <td>
                                         <center>
-                                            <i class="fa fa-circle-o text-success  mr-2"></i> Processed
+                                            <i class="fa fa-circle-o text-danger  mr-2"></i> Denied
                                         </center>{{--                                        <br>--}}
 {{--                                        <br>--}}
 {{--                                        <div>--}}

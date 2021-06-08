@@ -25,10 +25,50 @@
                 <!-- Sidebar Toggle Btn-->
                 <button class="sidebar-toggle"><i class="fa fa-bars"></i></button>
             </div>
-            <div class="right-menu list-inline no-margin-bottom">
-                <div class="list-inline-item"><a href="#" class="search-open nav-link"><i class="icon-magnifying-glass-browser"></i></a></div>
+            <!-- Tasks-->
 
-                <!-- Tasks-->
+
+
+
+            @php
+
+            $checkTicket=App\Models\Ticket::with('userTicket')->get();
+
+            @endphp
+
+
+                <div class="right-menu list-inline no-margin-bottom">
+                    <div class="list-inline-item"><a href="#" class="search-open nav-link"><i class="icon-magnifying-glass-browser"></i></a></div>
+                    <div class="list-inline-item dropdown"><a id="navbarDropdownMenuLink1" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link messages-toggle"><i class="icon-email"></i><span class="badge dashbg-1">{{$checkTicket->count()}}</span></a>
+                        <div aria-labelledby="navbarDropdownMenuLink1" class="dropdown-menu messages">
+
+                            @if(count($checkTicket)>0)
+                                @foreach($checkTicket as $data)
+                                <a href="{{route('ticket.view')}}" class="dropdown-item message d-flex align-items-center">
+                                <div class="profile"><img style="width: 100px" src="{{url('/images/users/',$data->userTicket->user_image)}}" alt="..." class="img-fluid">
+{{--                                    @auth('user')--}}
+{{--                            <div class="status online"></div>--}}
+{{--                                    @endauth--}}
+                                    <div class="status online"></div>
+
+                                </div>
+                        <div class="content">   <strong class="d-block">{{$data->userTicket->user_name}}</strong><span class="d-block">{{$data->subject}}</span><small class="date d-block">{{$data->created_at}}</small></div></a>
+
+                            @endforeach
+
+                                    <a  href="{{route('ticket.view')}}" class="dropdown-item text-center message"><strong>See All Tickets <i class="fa fa-angle-right"></i></strong></a>
+
+
+                        @else
+
+                       <center> <div class="content" >   <span class="d-block" style="color: cyan; padding: 33px 0px">Yay ! There's no ticket !</span></div></center>
+
+                @endif
+
+                    </div>
+                    </div>
+
+
 
                 <!-- Tasks end-->
 

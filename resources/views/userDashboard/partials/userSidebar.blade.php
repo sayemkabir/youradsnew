@@ -1,29 +1,29 @@
-<div class="nk-sidebar" style="background: black">
+<div class="nk-sidebar" style="background: #88b8ff">
     <div class="nk-nav-scroll">
         <ul class="metismenu" id="menu" >
 
             <li>
-                <a  href="{{route('user.dashboard')}}" >
+                <a style="background: whitesmoke"  href="{{route('user.dashboard')}}" >
                     <i class="icon-speedometer menu-icon"></i> &nbsp; <span class="nav-text">Dashboard</span>
                 </a>
 
-                <a  href="{{route('view.ads.category.dashboard')}}" >
+                <a style="background: whitesmoke"   href="{{route('view.ads.category.dashboard')}}" >
                     <i class="icon-eye menu-icon"></i>&nbsp; <span class="nav-text">View Ads</span>
                 </a>
 
 
-                <a  href="{{route('advertise.ads')}}" >
+                <a style="background: whitesmoke"  href="{{route('advertise.ads')}}" >
                     <i class="icon-chart menu-icon"></i>&nbsp; <span class="nav-text">Advertise</span>
                 </a>
 
 
-                <a  href="{{route('user.profile')}}" >
+                <a style="background: whitesmoke"  href="{{route('user.profile')}}" >
                     <i class="icon-user menu-icon"></i>&nbsp; <span class="nav-text">Profile</span>
                 </a>
 
 
             <li>
-                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                <a style="background: whitesmoke" class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <i class="icon-screen-tablet menu-icon"></i>&nbsp; <span class="nav-text">More</span>
                 </a>
                 <ul aria-expanded="false">

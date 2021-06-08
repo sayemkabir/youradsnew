@@ -7,6 +7,7 @@ use App\Models\Ad;
 use App\Models\Admin;
 use App\Models\User;
 use App\Models\UserAd;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -19,6 +20,12 @@ class DashboardController extends Controller
         $user=User::all();
         $ad=Ad::all();
         $clicks=UserAd::all();
-        return view('backend.layouts.dashboard.dashboard',compact('title','admin','user','ad','clicks'));
+        $ticket=Ticket::all();
+        return view('backend.layouts.dashboard.dashboard',compact('title','admin','user','ad','clicks','ticket'));
     }
+
+//    public function welcome()
+//    {
+//
+//    }
 }

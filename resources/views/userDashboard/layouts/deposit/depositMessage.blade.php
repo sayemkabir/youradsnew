@@ -27,10 +27,17 @@
                                    <p> <button onclick="copyToClipboard('#p1')">Copy Wallet address!</button></p>
                             <br>
                                 </div>
-                                <p>
 
-                                    <a type="submit" href="https://www.blockchain.com/btc/address/1655KAQib7a3xjUc1bRqhUK1eoC1kJURkQ" target="_blank" class="btn mb-1 btn-flat btn-outline-light"><i class="icon icon-check"></i>&nbsp; Check Payment</a>
-                                </p>
+
+
+                                        <p>
+                                        <a style="background: midnightblue" type="submit" href="https://www.blockchain.com/btc/address/1655KAQib7a3xjUc1bRqhUK1eoC1kJURkQ" target="_blank" class="btn mb-1 btn-flat btn-outline-light"><i class="icon icon-check"></i>&nbsp; Check Payment</a> &nbsp;&nbsp;
+
+                                    <a style="background: midnightblue" type="submit" href="{{route('user.dashboard')}}" class="btn mb-1 btn-flat btn-outline-light"><i class="fas fa-backward"></i>&nbsp; &nbsp;Go Back To Dashboard</a>
+                                        </p>
+
+
+
                             <p> The bitcoin deposit will be automatically added in your purchase balance after 1 confirmations in the bitcoin network. </p>
 
                         </center>

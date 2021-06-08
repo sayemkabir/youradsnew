@@ -79,6 +79,8 @@ class AdsController extends Controller
 
 //        dd($id);
         $title = "Ads";
+        $category=Category::find($id);
+
         if ($id == 'all') {
 
             $ads = Ad::paginate('2');
@@ -91,7 +93,7 @@ class AdsController extends Controller
         }
 
 
-        return view('backend.layouts.ads.adsUnderProduct', compact('ads', 'categories', 'title'));
+        return view('backend.layouts.ads.adsUnderProduct', compact('ads', 'categories', 'title','category'));
 
 
 //         dd($ads);
@@ -112,6 +114,7 @@ class AdsController extends Controller
     public function adsPost($id)
     {
         $ad = Ad::find($id);
+//        dd($id);
 
         $ads = UserAd::where('ad_id', $id)
             ->get();
@@ -125,13 +128,15 @@ class AdsController extends Controller
                 // do if data exist
 
                 dd('You Have Already Watched This Ad');
+//                return Redirect::to($ad->ad_link);
+
             } else {
                 //create data
-                UserAd::create([
-                    'ad_id' => $id,
-                    'user_id' => auth('user')->user()->id
-                ]);
-                User::find(auth('user')->user()->id)->increment('balance',$ad->ad_price);
+//                UserAd::create([
+//                    'ad_id' => $id,
+//                    'user_id' => auth('user')->user()->id
+//                ]);
+//                User::find(auth('user')->user()->id)->increment('balance',$ad->ad_price);
 
 
                 //user balance credit
@@ -142,6 +147,33 @@ class AdsController extends Controller
             $ad->update(['ad_status' => 'inactive']);
             return redirect()->back();
         }
+
+    }
+
+    public function adsCredit($id)
+    {
+
+        $ad=Ad::find($id);
+
+        $ads = UserAd::where('ad_id', $id)->where('user_id', auth('user')->user()->id)
+            ->first();
+
+        if ($ads)
+        {
+
+            dd('You Have Already Watched This Ad');
+
+
+        }else{
+            UserAd::create([
+                'ad_id' => $id,
+                'user_id' => auth('user')->user()->id
+            ]);
+
+        User::find(auth('user')->user()->id)->increment('balance',$ad->ad_price);
+
+        return response()->json($ad);
+    }
 
     }
 

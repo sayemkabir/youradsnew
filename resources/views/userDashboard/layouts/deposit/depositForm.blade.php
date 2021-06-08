@@ -28,7 +28,7 @@
     <link href="{{asset('formAd')}}/css/main.css" rel="stylesheet" media="all">
 </head>
 
-<body>
+<body><br>
 {{--                                                <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">--}}
 <div class="wrapper wrapper--w790">
     <div class="card card-5">
@@ -49,26 +49,16 @@
 
 
 
-        <div class="card-body">
+        <div class="card-body" style="background: #90a8d4">
             <form action="{{route('balance.deposit.success')}}" method="post">
+
                 @csrf
-                <h1><center>DEPOSIT</center></h1>
+                <h1 style="color: aqua"><center>DEPOSIT</center></h1>
                 <br>
 
                 <div  class="form-row">
-                    <div style="width: 200px;" class="name">Chose a payment method: </div>
-                    <div class="value">
-                        <div class="input-group">
-                            <div class="rs-select2 js-select-simple select--no-search">
-                                <select required name="depositMethod" >
-                                    <option disabled selected value="">Select Payment Method</option>
-                                    <option value="Bitcoin"><i class="cc BTC-alt" title="BTC"></i> Bitcoin</option>
-                                    <option disabled value="">More coming soon....</option>
-                                </select>
-                                <div class="select-dropdown"></div>
-                            </div>
-                        </div>
-                    </div>
+                    <div style="width: 500px;" class="name">Payment method: </div>
+                    <input style="width: 21%; padding: 0px 34px" type="text" readonly value="BITCOIN" class="input--style-5" name="depositMethod">
                 </div>
 
 
@@ -97,6 +87,7 @@
                 <div>
                     <button class="btn btn--radius-2 btn--red" type="submit"><i class="icon icon-check"></i>&nbsp; DEPOSIT</button>
                 </div>
+
             </form>
         </div>
     </div>

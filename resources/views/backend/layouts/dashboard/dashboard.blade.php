@@ -1,6 +1,7 @@
 @extends('backend.welcome')
 @section('operation')
 
+    @livewireStyles
 
     <section class="no-padding-top no-padding-bottom">
         <div class="container-fluid">
@@ -61,10 +62,29 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-md-12 col-sm-12">
+                    <div class="statistic-block block">
+                        <div class="progress-details d-flex align-items-end justify-content-between">
+                            <div class="title">
+                                <div class="icon"><i class="icon-light-bulb"></i></div><strong>TOTAL TICKETS CREATED</strong>
+                            </div>
+                            <div class="number dashtext-2">{{$ticket->count()}}</div>
+                        </div>
+                        <div class="progress progress-template">
+                            <div role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
+                        </div>
+                    </div>
+                </div>
+
                 </div>
             </div>
+{{--        <livewire:counter />--}}
         </div>
     </section>
+
+
+    @livewireScripts
 
 
 @endsection

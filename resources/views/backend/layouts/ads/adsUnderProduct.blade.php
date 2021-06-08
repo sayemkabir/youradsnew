@@ -34,7 +34,7 @@
             &nbsp; &nbsp; &nbsp; <label style="color: whitesmoke; size: 200px;" for=""><h5>Sort By:</h5></label>
             <div class="dropdown">
                 &nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Select Category
+                   {{(isset($category)) ? $category->name : 'Select Category'}}
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="all">All Ads</a>

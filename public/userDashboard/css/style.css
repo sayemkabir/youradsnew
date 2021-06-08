@@ -553,7 +553,7 @@ pre {
   position: relative;
   width: 100%;
   min-height: 1px;
-  padding-right: 17px;
+  padding-right: 18px;
   padding-left: 15px; }
 
 .col {
@@ -1764,7 +1764,7 @@ textarea.form-control {
 
 .btn {
   display: inline-block;
-  font-weight: 400;
+  font-weight: 800;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
@@ -1793,9 +1793,9 @@ fieldset:disabled a.btn {
   pointer-events: none; }
 
 .btn-primary {
-  color: #fff;
-  background-color: #7571f9;
-  border-color: #7571f9; }
+  color: #3e3e50;
+  background-color: #56c5d4;
+  border-color: #7571f900; }
   .btn-primary:hover {
     color: #fff;
     background-color: #514cf7;

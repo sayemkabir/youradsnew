@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Throwable;
 
 class CategoryController extends Controller
 {
@@ -18,15 +19,15 @@ class CategoryController extends Controller
 
     public function createCategory(Request $request)
     {
-        
+
         $request->validate([
-            
+
             'categoryname'=>'required',
             'categoryImage'=>'required',
             'categoryprice'=>'required',
             'categorydescription'=>'required',
-            
-            
+
+
         ]);
 
         $category_image="";
@@ -58,9 +59,21 @@ class CategoryController extends Controller
 
         $category=Category::find($id);
 
-        $category->delete();
+        try {
+            $category->delete();
 
-        return redirect()->route('category.name')->with('danger','Category Was Successfully Thrown Out of the Project');
+            return redirect()->route('category.name')->with('danger','Category Was Successfully Thrown Out of the Project');
+
+        }catch (Throwable $e){
+
+            if ($e->getCode() == '23000'){
+
+                return redirect()->back()->with('danger','This category is not empty. you cannot delete it.');
+
+            }
+            return back();
+
+        }
     }
 
     public function categoryUpdatePost(Request $request,$id)
@@ -89,10 +102,10 @@ class CategoryController extends Controller
                 $file->storeAs('categories',$category_image);
             }
         }
-        
-        
+
+
         $category=Category::find($id)->update([
-            
+
             'name' => $request->categoryname,
             'image'=>$category_image,
             'price'=>$request->categoryprice,

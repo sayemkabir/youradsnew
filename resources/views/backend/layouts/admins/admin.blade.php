@@ -45,9 +45,10 @@
                 <td>{{$data->contact}}</td>
                 <td>{{$data->status}}</td>
                 <td>
-                    <a class="btn btn-success" href="">View</a>
-                    <a class="btn btn-danger" href="{{route('admin.delete',$data->id)}}">Delete</a>
+
                     <a class="btn btn-info" href="{{route('admin.update.form',$data->id)}}">Edit</a>
+
+                    <a class="btn btn-danger" href="{{route('admin.delete',$data->id)}}">Delete</a>
 
                 </td>
 

@@ -1,6 +1,7 @@
 @extends('userDashboard.master')
 @section('userDashboard')
     <div class="container-fluid">
+        @if(auth('user')->user()->v_status=='verified')
 
 
     <div class="row">
@@ -25,7 +26,20 @@
 
         @endforeach
 
+
+
+
     </div>
+        @else
+            <br>
+            <br>
+            <center>
+                <h1 style="color: red">Ops!!! Your Account Is Not Verified !!!</h1>
+                <br>
+                <h2 style="color: royalblue">You need to verify your account to see the ads.</h2>
+            </center>
+
+        @endif
 
 
     </div>

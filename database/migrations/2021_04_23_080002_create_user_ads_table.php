@@ -16,7 +16,7 @@ class CreateUserAdsTable extends Migration
         Schema::create('user_ads', function (Blueprint $table) {
             $table->id();
             $table->string('ad_id');
-            $table->string('user_id');
+            $table->foreignId('user_id')->cascadeOnDelete();
 //            $table->timestamps();
         });
     }

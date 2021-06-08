@@ -49,9 +49,8 @@
         <td>{{$data->name}}</td>
         <td style="width: 50%">{{$data->description}}</td>
         <td>
-            <a class="btn btn-success" href="">View</a>
-            <a class="btn btn-danger" href="{{route('category.delete',$data->id)}}">Delete</a>
             <a class="btn btn-info"  href="{{route('category.update',$data->id)}}">Edit</a>
+            <a class="btn btn-danger" href="{{route('category.delete',$data->id)}}">Delete</a>
         </td>
     </tr>
 
@@ -86,8 +85,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="categoryname">Category Name</label>
-                            <input required min="1" type="number" id="categoryname" name="categoryprice" placeholder="Enter Price Here" class="form-control">
+                            <label for="categoryprice">Category Price</label>
+                            <input required min="1" type="number" id="categoryprice" name="categoryprice" placeholder="Enter Price Here" class="form-control">
 
 
                         </div>

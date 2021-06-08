@@ -16,7 +16,7 @@ class UserCreated extends Mailable
      *
      * @return void
      */
-    protected $userRegistration;
+    public $userRegistration;
     public function __construct($userRegistration)
     {
         $this->userRegistration=$userRegistration;

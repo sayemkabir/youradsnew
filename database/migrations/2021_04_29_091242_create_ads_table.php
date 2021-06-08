@@ -20,7 +20,7 @@ class CreateAdsTable extends Migration
             $table->string('admin_id')->nullable();
             $table->text('ad_link');
             $table->string('ad_content','1000')->nullable();
-            $table->string('category_id');
+            $table->foreignId('category_id')->constrained('categories')->restrictOnDelete();
             $table->integer('ad_clicks');
             $table->string('ad_price');
             $table->string('total_price');

@@ -1,6 +1,11 @@
 @extends('backend.welcome')
 @section('operation')
 
+
+    <center><a href="{{route('report.deposit')}}"><button type="button"  class="btn btn-primary align-content-center" >
+                <i class="icon-pie-chart"></i> &nbsp; Generate Report
+            </button></a></center><br>
+
     @if(session()->has('success'))
 
         <div class="alert alert-success">
@@ -14,7 +19,6 @@
 
         <th scope="col">Payment Id</th>
 
-        <th scope="col">User Id</th>
         <th scope="col">User Name</th>
         <th scope="col">E-mail</th>
 
@@ -32,7 +36,6 @@
 @foreach($deposit as $data)
             <tr>
                 <th scope="row">{{$data->id}}</th>
-                <td>{{$data->user_id}}</td>
                 <td>{{$data->userDeposit->user_name}}</td>
                 <td>{{$data->userDeposit->email}}</td>
                 <td>{{$data->deposit_balance}}</td>

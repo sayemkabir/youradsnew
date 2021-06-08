@@ -26,12 +26,13 @@
             // e.preventDefault();
             var duration = Number.parseInt(e.target.dataset.duration);
             var key= e.target.dataset.key
+            var id= e.target.dataset.id
 
-            doCount(duration,key)
+            doCount(duration,key,id)
         })
     })
 
-    function doCount(duration,key) {
+    function doCount(duration,key,id) {
         var counter = duration;
 
         setInterval(function() {
@@ -41,8 +42,17 @@
                 span.innerHTML = counter;
             }
             if (counter === -1) {
+                // api call
+
+                var url = "{{url('back/ads/credit')}}/" + id
+                fetch(url).then(res=>res.json())
+                    .then(data=>{
+                        console.log(data)
+                    })
+
                 alert('Your Account Was Credited');
-                //api call
+
+
                 clearInterval(counter);
             }
         }, 1000);
@@ -53,6 +63,8 @@
 <!-- Pignose Calender -->
 <script src="{{asset('userDashboard')}}/plugins/moment/moment.min.js"></script>
 <script src="{{asset('userDashboard')}}/plugins/pg-calendar/js/pignose.calendar.min.js"></script>
+<script src="{{asset('userDashboard')}}/plugins/toastr/js/toastr.min.js"></script>
+<script src="{{asset('userDashboard')}}/plugins/toastr/js/toastr.init.js"></script>
 <!-- ChartistJS -->
 <script src="{{asset('userDashboard')}}/plugins/chartist/js/chartist.min.js"></script>
 <script type="text/javascript">

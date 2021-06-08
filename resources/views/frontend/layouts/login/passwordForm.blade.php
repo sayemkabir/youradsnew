@@ -43,7 +43,7 @@
                     <div class="info d-flex align-items-center">
                         <div class="content">
                             <div class="logo">
-                                <h1>Password Recovery</h1>
+                                <h1>Update Password</h1>
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                                     <input id="login-username" type="password" name="password" required data-msg="Please enter your new password" class="input-material">
                                     <label for="login-username" class="label-material">New Password</label>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Reset Password</button>
+                                <button type="submit" class="btn btn-primary">Update Password</button>
                                 <!-- This should be submit button but I replaced it with <a> for demo purposes-->
                             </form>
                         </div>

@@ -12,7 +12,7 @@
         </div>
     @endif
 
-    <table class="table table-bordered table-hover ">
+    <table class="table table-bordered table-hover table-responsive">
 
         <thead>
 
@@ -44,9 +44,8 @@
                 <td >{{$data->deposit_balance}}</td>
                 <td >{{$data->user_status}}</td>
                 <td>
-                    <a class="btn btn-success" href="">View</a>
-                    <a class="btn btn-danger" href="{{route('user.delete',$data->id)}}">Delete</a>
                     <a class="btn btn-info" href="{{route('user.update.form',$data->id)}}">Edit</a>
+                    <a class="btn btn-danger" href="{{route('user.delete',$data->id)}}">Delete</a>
                 </td>
             </tr>
 

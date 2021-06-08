@@ -1,6 +1,8 @@
 @extends('userDashboard.master')
 @section('userDashboard')
 
+    @if(auth('user')->user()->v_status=="verified")
+
     <!DOCTYPE html>
 <html lang="en">
 
@@ -91,7 +93,7 @@
                         <div class="name">Select Category </div>
 
                         <select required name="categoryid" id="categoryid">
-                            <option  selected="selected">Choose option</option>
+                            <option  disabled selected="selected">Choose option</option>
                             @foreach($categoriesid as $data)
                                 <option value="{{$data->id}}">{{$data->name}}</option>
                             @endforeach
@@ -103,7 +105,7 @@
                         <div class="name">Ad Duration</div>&nbsp;
 
                         <select required name="adduration" id="adduration">
-                            <option  selected="selected">Choose option</option>
+                            <option  disabled selected="selected">Choose option</option>
                             <option value="5">5 seconds</option>
                             <option value="10">10 seconds</option>
                             <option value="30">30 seconds</option>
@@ -355,7 +357,16 @@
 {{--                </div></div></div><br><br>--}}
 {{--    </form>--}}
 {{--    <br><br><br><br>--}}
+@else
+    <br>
+    <br>
+    <center>
+        <h1 style="color: red">Ops!!! Your Account Is Not Verified !!!</h1>
+        <br>
+        <h2 style="color: royalblue">You need to verify your account to ADVERTISE your ads.</h2>
+    </center>
 
+@endif
 
 
 
