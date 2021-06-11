@@ -74,6 +74,9 @@ Route::post('/advertise/ads/create',[AdsController::class,'advertisesAdsPost'])-
 Route::get('/post/ads',[AdsController::class,'postAdsDashboard'])->name('post.ads.dashboard');
 Route::get('/post-fetch/{id}',[ApiController::class,'postAdsFetch'])->name('post.ad.fetch');
 
+//User Delete Ad
+Route::get('/user/delete/{id}',[AdsController::class,'userAdDelete'])->name('user.ad.delete');    
+
 
 //Ad Click Extend
 Route::get('/ad/clicks/extend/{id}',[AdsController::class,'extendAdClicks'])->name('ad.click.extend');

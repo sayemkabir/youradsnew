@@ -399,6 +399,13 @@
                                                             </div>
                                                         @endif
 
+                                                         @if(session()->has('successDelete'))
+
+                                                            <div class="alert alert-danger">
+                                                                {{ session()->get('successDelete') }}
+                                                            </div>
+                                                        @endif
+
                                                          @if(session()->has('successUpdate'))
 
                                                             <div class="alert alert-success">
@@ -416,16 +423,16 @@
                                                                     <p><h4>{{$key+1}}</h4><i class="fas fa-ad"></i></p><h2>{{$data->ad_name}}</h2>
                                                                     <h3 style="color: royalblue"> <span id="count-{{$key}}">{{$data->ad_duration}}</span> </h3>
 
-                                                                    @php
-                                                                        $duration = explode('sec',$data->ad_duration)[array_key_first(explode('sec',$data->ad_duration))];
+{{--                                                                    @php--}}
+{{--                                                                        $duration = explode('sec',$data->ad_duration)[array_key_first(explode('sec',$data->ad_duration))];--}}
 
-                                                                    @endphp
+{{--                                                                    @endphp--}}
 
 
-                                                                    <a style="width: 200px; overflow: hidden;" data-duration="{{$duration}}" data-key="{{$key}}" class="startClock" id="startClock" onclick="jQuery()" href="{{$data->ad_link}}" target="_blank">{{$data->ad_link}}</a>
-                                                                    <p>{{$data->ad_content}}</p>
+                                                                    <a style="width: 200px; overflow: hidden;"  href="{{$data->ad_link}}" target="_blank">{{$data->ad_link}}</a><br><br>
+                                                                    <p>{{$data->ad_content}}</p><br>
 
-                                                                        <p style="color: darkblue;">$&nbsp; {{$data->ad_price}} Satoshi</p>
+                                                                        <p style="color: darkblue;"><img style="width: 25px" src="{{url('/images/coins.png')}}" alt="">&nbsp; {{$data->ad_price}} Satoshi</p>
                                                                         @if($data->ad_status=="active")
                                                                         <div class="col-sm-4">
                                                                             <br>
@@ -438,11 +445,53 @@
                                                                             </div>
 
                                                                         @endif
+                                                                        <div class="row">
                                                                         <div class="col-sm-4">
+
                                                                             <a href="{{route('ad.click.extend',$data->id)}}" type="submit" class="btn btn-success">Extend Ad Clicks</a>
+
+                                                                        </div>
+                                                                            <div class="col-sm-4"></div>
+
+                                                                            <div class="col-sm-4">
+
+                                                                            <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-danger">Delete Ad</button>
+
+                                                                        </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                             </div>
+                                                             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                                 <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                     <div class="modal-content">
+                                                                         <div class="modal-header">
+                                                                             <h4 class="modal-title" id="exampleModalLongTitle">Advertisement Delete</h4>
+                                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                 <span aria-hidden="true">&times;</span>
+                                                                             </button>
+                                                                         </div>
+                                                                         <div class="modal-body"><br>
+                                                                             <center>
+                                                                                 <h1 style="color: red">
+                                                                                     <i class="fas fa-exclamation-triangle"></i>
+                                                                                     CAUTION!!!
+                                                                                 </h1><br>
+                                                                                 <h3>
+                                                                                     This Action is irreversible.
+                                                                                 </h3><br>
+                                                                                 <h4 style="color: darkred">
+                                                                                     Do you really want to DELETE this advertisement ?
+                                                                                 </h4>
+                                                                             </center>
+                                                                             <br>
+                                                                         </div>
+                                                                         <div class="modal-footer">
+                                                                             <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                                             <a href="{{route('user.ad.delete',$data->id)}}" type="submit" class="btn btn-danger">Confirm</a>
+                                                                         </div>
+                                                                     </div>
+                                                                 </div>
                                                              </div>
                                                                 @endforeach
 
@@ -450,6 +499,13 @@
 
                                                        </div>
                                             </div>
+                                            <!-- Button trigger modal -->
+{{--                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">--}}
+{{--                                                Launch demo modal--}}
+{{--                                            </button>--}}
+
+                                            <!-- Modal -->
+
                                         </div>
                                     </div>
                                 </div>

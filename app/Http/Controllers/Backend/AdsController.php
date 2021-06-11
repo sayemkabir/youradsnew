@@ -127,8 +127,8 @@ class AdsController extends Controller
             if ($ads) {
                 // do if data exist
 
-                dd('You Have Already Watched This Ad');
-//                return Redirect::to($ad->ad_link);
+//                dd('You Have Already Watched This Ad');
+                return Redirect::to($ad->ad_link);
 
             } else {
                 //create data
@@ -293,6 +293,15 @@ class AdsController extends Controller
         return redirect()->route('user.profile')->with('successUpdate','Ad Extended Successfully!!!');
     }
 
+
+    public function userAdDelete($id)
+    {
+        $userAdDelete=Ad::find($id);
+        $userAdDelete->delete();
+
+        return redirect()->back()->with('successDelete','Your Advertisement Was Deleted Successfully');
+
+    }
 
 
 

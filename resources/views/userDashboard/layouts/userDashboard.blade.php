@@ -9,7 +9,7 @@
                 <div class="card-body" style="background: #0d1313">
                     <h3  style="color: aqua">Balance</h3><br>
                     <div class="d-inline-block">
-                        <h2 style="color: deepskyblue">$ {{auth('user')->user()->balance}}</h2>
+                        <h2 style="color: deepskyblue"><img style="width: 45px" src="{{url('/images/coins.png')}}" alt=""> {{auth('user')->user()->balance}}</h2>
 
                         <br>
 
@@ -27,7 +27,7 @@
                 <div class="card-body" style="background: #0d1313; ">
                     <h3 style="color: cyan">Purchase Balance</h3><br>
                     <div class="d-inline-block">
-                        <h2 style="color: deepskyblue ">$ {{auth('user')->user()->deposit_balance}}</h2>
+                        <h2 style="color: deepskyblue "><img style="width: 45px" src="{{url('/images/coins.png')}}" alt=""> {{auth('user')->user()->deposit_balance}}</h2>
 
                         <br>
 

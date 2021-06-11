@@ -51,6 +51,8 @@
                     })
 
                 alert('Your Account Was Credited');
+                location.reload();
+
 
 
                 clearInterval(counter);
